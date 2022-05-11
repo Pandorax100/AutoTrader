@@ -8,8 +8,26 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Version>0.0.0-alpha1</Version>
+    <Authors>Liam</Authors>
+    <Description>A C# wrapper for the AutoTrader api</Description>
+    <PackageProjectUrl>https://github.com/Pandorax100/AutoTrader</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Pandorax100/AutoTrader</RepositoryUrl>
+    <PackageTags>AutoTrader</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
