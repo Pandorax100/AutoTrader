@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace Pandorax.AutoTrader.Models;
-public class AutoTrader
+public class AutoTraderNotification
 {
     [JsonPropertyName("clientId")]
     public string? ClientId { get; set; }
