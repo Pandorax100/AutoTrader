@@ -1,7 +1,8 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
+using Pandorax.AutoTrader.Models;
 
-namespace Pandorax.AutoTrader.Models;
+namespace Pandorax.AutoTrader.Converters;
 
 internal class VatStatusConverter : JsonConverter<VatStatus>
 {

@@ -10,6 +10,7 @@ internal class LifecycleStateConverter : JsonConverter<LifecycleState>
         return reader.GetString() switch
         {
             "DELETED" => LifecycleState.Deleted,
+            "DUE_IN" => LifecycleState.DueIn,
             "FORECOURT" => LifecycleState.Forecourt,
             "SALE_IN_PROGRESS" => LifecycleState.SaleInProgress,
             "WASTEBIN" => LifecycleState.Wastebin,
@@ -25,6 +26,7 @@ internal class LifecycleStateConverter : JsonConverter<LifecycleState>
             LifecycleState.Forecourt => "FORECOURT",
             LifecycleState.SaleInProgress => "SALE_IN_PROGRESS",
             LifecycleState.Wastebin => "WASTEBIN",
+            LifecycleState.DueIn => "DUE_IN",
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         });
     }

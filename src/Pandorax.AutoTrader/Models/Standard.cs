@@ -16,7 +16,7 @@ public class Standard
     public Drivetrain? Drivetrain { get; set; }
 
     [JsonPropertyName("fuelType")]
-    public FuelType? FuelType { get; set; }
+    public string? FuelType { get; set; }
 
     [JsonPropertyName("generation")]
     public string? Generation { get; set; }

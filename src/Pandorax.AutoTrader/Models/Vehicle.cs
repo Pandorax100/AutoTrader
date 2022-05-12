@@ -88,7 +88,7 @@ public class Vehicle
     public double? FuelEconomyWltpCombinedMpg { get; set; }
 
     [JsonPropertyName("fuelType")]
-    public FuelType? FuelType { get; set; }
+    public string? FuelType { get; set; }
 
     [JsonPropertyName("heightMM")]
     public int? HeightMm { get; set; }
