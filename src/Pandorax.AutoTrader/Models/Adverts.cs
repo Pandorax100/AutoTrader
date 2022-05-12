@@ -4,19 +4,19 @@ namespace Pandorax.AutoTrader.Models;
 public class Adverts
 {
     [JsonPropertyName("forecourtPrice")]
-    public ForecourtPrice ForecourtPrice { get; set; } = null!;
+    public Price ForecourtPrice { get; set; } = null!;
 
     [JsonPropertyName("manufacturerApproved")]
     public bool ManufacturerApproved { get; set; }
 
     [JsonPropertyName("preparationCosts")]
-    public PreparationCosts PreparationCosts { get; set; } = null!;
+    public Price PreparationCosts { get; set; } = null!;
 
     [JsonPropertyName("priceOnApplication")]
     public bool PriceOnApplication { get; set; }
 
     [JsonPropertyName("purchasePrice")]
-    public PreparationCosts PurchasePrice { get; set; } = null!;
+    public Price PurchasePrice { get; set; } = null!;
 
     [JsonPropertyName("reservationStatus")]
     public string? ReservationStatus { get; set; }
@@ -31,7 +31,7 @@ public class Adverts
     public DateTimeOffset? StockInDate { get; set; }
 
     [JsonPropertyName("stockInValue")]
-    public ForecourtPrice StockInValue { get; set; } = null!;
+    public Price StockInValue { get; set; } = null!;
 
     [JsonPropertyName("twelveMonthsMot")]
     public bool TwelveMonthsMot { get; set; }

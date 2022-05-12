@@ -43,7 +43,7 @@ public class Vehicle
     public string? DerivativeId { get; set; }
 
     [JsonPropertyName("doors")]
-    public long? Doors { get; set; }
+    public int? Doors { get; set; }
 
     [JsonPropertyName("driverPosition")]
     public string DriverPosition { get; set; } = null!;
@@ -58,7 +58,7 @@ public class Vehicle
     public string? EndLayout { get; set; }
 
     [JsonPropertyName("engineCapacityCC")]
-    public long? EngineCapacityCc { get; set; }
+    public int? EngineCapacityCc { get; set; }
 
     [JsonPropertyName("enginePowerBHP")]
     public double? EnginePowerBhp { get; set; }
@@ -91,7 +91,7 @@ public class Vehicle
     public FuelType? FuelType { get; set; }
 
     [JsonPropertyName("heightMM")]
-    public long? HeightMm { get; set; }
+    public int? HeightMm { get; set; }
 
     [JsonPropertyName("insuranceGroup")]
     public string? InsuranceGroup { get; set; }
@@ -109,10 +109,10 @@ public class Vehicle
     public DateTimeOffset? LastServiceDate { get; set; }
 
     [JsonPropertyName("lastServiceOdometerReadingMiles")]
-    public long? LastServiceOdometerReadingMiles { get; set; }
+    public int? LastServiceOdometerReadingMiles { get; set; }
 
     [JsonPropertyName("lengthMM")]
-    public long? LengthMm { get; set; }
+    public int? LengthMm { get; set; }
 
     [JsonPropertyName("make")]
     public string Make { get; set; } = null!;
@@ -124,10 +124,10 @@ public class Vehicle
     public DateTimeOffset? MotExpiryDate { get; set; }
 
     [JsonPropertyName("odometerReadingMiles")]
-    public long OdometerReadingMiles { get; set; }
+    public int OdometerReadingMiles { get; set; }
 
     [JsonPropertyName("owners")]
-    public long? Owners { get; set; }
+    public int? Owners { get; set; }
 
     [JsonPropertyName("ownershipCondition")]
     public OwnershipCondition OwnershipCondition { get; set; }
@@ -139,7 +139,7 @@ public class Vehicle
     public string? Registration { get; set; }
 
     [JsonPropertyName("seats")]
-    public long? Seats { get; set; }
+    public int? Seats { get; set; }
 
     [JsonPropertyName("serviceHistory")]
     public string? ServiceHistory { get; set; }
@@ -148,7 +148,7 @@ public class Vehicle
     public Standard Standard { get; set; } = null!;
 
     [JsonPropertyName("topSpeedMPH")]
-    public long? TopSpeedMph { get; set; }
+    public int? TopSpeedMph { get; set; }
 
     [JsonPropertyName("transmissionType")]
     public string? TransmissionType { get; set; }
@@ -166,7 +166,7 @@ public class Vehicle
     public string? Vin { get; set; }
 
     [JsonPropertyName("warrantyMonthsOnPurchase")]
-    public long? WarrantyMonthsOnPurchase { get; set; }
+    public int? WarrantyMonthsOnPurchase { get; set; }
 
     [JsonPropertyName("wheelbaseType")]
     public string? WheelbaseType { get; set; }

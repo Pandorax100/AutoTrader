@@ -1,11 +1,11 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace Pandorax.AutoTrader.Models;
-public class TotalPrice
+public class Price
 {
     [JsonPropertyName("amountEUR")]
-    public long? AmountEur { get; set; }
+    public int? AmountEur { get; set; }
 
     [JsonPropertyName("amountGBP")]
-    public long AmountGbp { get; set; }
+    public int AmountGbp { get; set; }
 }

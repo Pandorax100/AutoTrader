@@ -22,7 +22,7 @@ public class Check
     public bool? MileageDiscrepancy { get; set; }
 
     [JsonPropertyName("previousOwners")]
-    public long? PreviousOwners { get; set; }
+    public int? PreviousOwners { get; set; }
 
     [JsonPropertyName("privateFinance")]
     public bool? PrivateFinance { get; set; }
