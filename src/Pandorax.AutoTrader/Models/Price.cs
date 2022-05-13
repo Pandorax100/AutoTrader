@@ -7,5 +7,5 @@ public class Price
     public int? AmountEur { get; set; }
 
     [JsonPropertyName("amountGBP")]
-    public int AmountGbp { get; set; }
+    public int? AmountGbp { get; set; }
 }

@@ -49,7 +49,7 @@ public class RetailAdverts
     public Price TotalPrice { get; set; } = null!;
 
     [JsonPropertyName("vatExcluded")]
-    public bool VatExcluded { get; set; }
+    public bool? VatExcluded { get; set; }
 
     [JsonPropertyName("vatStatus")]
     public VatStatus VatStatus { get; set; }

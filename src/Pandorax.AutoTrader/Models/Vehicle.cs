@@ -64,7 +64,7 @@ public class Vehicle
     public double? EnginePowerBhp { get; set; }
 
     [JsonPropertyName("exDemo")]
-    public bool ExDemo { get; set; }
+    public bool? ExDemo { get; set; }
 
     [JsonPropertyName("exteriorFinish")]
     public string? ExteriorFinish { get; set; }
