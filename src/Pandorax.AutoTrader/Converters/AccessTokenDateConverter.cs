@@ -19,7 +19,7 @@ namespace Pandorax.AutoTrader.Converters
             var value = reader.GetString();
 
             var dateTime = DateTimeOffset.ParseExact(
-                value,
+                value!,
                 @"ddd MMM dd HH:mm:ss \U\T\C yyyy",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AssumeUniversal);
