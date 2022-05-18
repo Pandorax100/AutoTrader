@@ -7,7 +7,7 @@ public class AutoTraderNotification
     public string? ClientId { get; set; }
 
     [JsonPropertyName("data")]
-    public Data Data { get; set; } = null!;
+    public AutoTraderVehicleData Data { get; set; } = null!;
 
     [JsonPropertyName("id")]
     public string Id { get; set; } = null!;

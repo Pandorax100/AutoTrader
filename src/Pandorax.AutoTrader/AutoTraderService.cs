@@ -7,38 +7,26 @@ using Microsoft.Extensions.Options;
 using Pandorax.AutoTrader.Constants;
 using Pandorax.AutoTrader.Models;
 using Pandorax.AutoTrader.Options;
+using Pandorax.AutoTrader.Services;
 
 namespace Pandorax.AutoTrader
 {
-    public class AutoTraderService : IAutoTraderService
+    internal class AutoTraderService : IAutoTraderService
     {
         private static readonly JsonSerializerOptions JsonSerializerOptions = new()
         {
             NumberHandling = JsonNumberHandling.AllowReadingFromString,
         };
 
-        private readonly AutoTraderOptions _options;
+        private readonly AccessTokenHandler _accessTokenHandler;
         private readonly HttpClient _client;
 
         public AutoTraderService(
-            IOptions<AutoTraderOptions> options,
+            AccessTokenHandler accessTokenHandler,
             HttpClient client)
         {
-            _options = options.Value;
+            _accessTokenHandler = accessTokenHandler;
             _client = client;
-
-            if (_options.BaseApiUrl is not null)
-            {
-                _client.BaseAddress = _options.BaseApiUrl;
-            }
-            else
-            {
-                var baseAddress = _options.UseSandboxEnvironment
-                    ? AutoTraderConstants.SandboxBaseUrl
-                    : AutoTraderConstants.ProductionBaseUrl;
-
-                _client.BaseAddress = new Uri(baseAddress);
-            }
         }
 
         public AutoTraderNotification? ParseNotificationJson(string json)
@@ -57,7 +45,7 @@ namespace Pandorax.AutoTrader
             string? registration = null,
             string? vin = null)
         {
-            string? accessToken = await GetAccessTokenAsync();
+            string? accessToken = await _accessTokenHandler.GetAccessTokenAsync();
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
             var query = BuildStockQueryString(advertiserId, pageSize, page, lifecycleState, searchId, stockId, registration, vin);
@@ -69,6 +57,47 @@ namespace Pandorax.AutoTrader
             StockListResult? parsed = JsonSerializer.Deserialize<StockListResult>(json, JsonSerializerOptions);
 
             return parsed;
+        }
+
+        /// <inheritdoc />
+        public async Task<List<AutoTraderVehicleData>> GetAllStockAsync(
+            string? advertiserId = null,
+            LifecycleState? lifecycleState = null,
+            string? searchId = null,
+            string? stockId = null,
+            string? registration = null,
+            string? vin = null)
+        {
+            List<AutoTraderVehicleData> vehicles = new();
+
+            int page = 1;
+            while (true)
+            {
+                StockListResult? stock = await GetStockAsync(
+                    advertiserId,
+                    page: page,
+                    lifecycleState: lifecycleState,
+                    searchId: searchId,
+                    stockId: stockId,
+                    registration: registration,
+                    vin: vin);
+
+                if (stock is null)
+                {
+                    break;
+                }
+
+                vehicles.AddRange(stock.Results);
+
+                if (vehicles.Count >= stock.TotalResults)
+                {
+                    break;
+                }
+
+                page++;
+            }
+
+            return vehicles;
         }
 
         private static NameValueCollection BuildStockQueryString(
@@ -112,25 +141,6 @@ namespace Pandorax.AutoTrader
             }
 
             return query;
-        }
-
-        private async Task<string?> GetAccessTokenAsync()
-        {
-            using FormUrlEncodedContent body = new(new Dictionary<string, string>
-            {
-                ["key"] = _options.ApiKey,
-                ["secret"] = _options.ApiSecret,
-            });
-
-            using HttpResponseMessage? response = await _client.PostAsync("/authenticate", body);
-
-            response.EnsureSuccessStatusCode();
-
-            string json = await response.Content.ReadAsStringAsync();
-
-            JsonElement? parsed = (JsonElement?)JsonSerializer.Deserialize<object>(json);
-
-            return parsed?.GetProperty("access_token").GetString();
         }
     }
 }

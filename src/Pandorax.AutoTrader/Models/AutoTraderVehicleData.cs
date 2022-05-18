@@ -1,8 +1,8 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Pandorax.AutoTrader.Models;
 
-public class Data
+public class AutoTraderVehicleData
 {
     [JsonPropertyName("advertiser")]
     public Advertiser Advertiser { get; set; } = null!;
