@@ -9,7 +9,6 @@ public interface IAutoTraderService
     /// <summary>
     /// Retrieves stock records and optionally searches by the given parameters.
     /// </summary>
-    /// <param name="advertiserId">An optional advertiser id to return stock associated to a specific advertiser.</param>
     /// <param name="pageSize">
     /// Use this to adjust the number of results returned per page.
     /// 20 is the default and recommended however you may request up to 200.
@@ -18,6 +17,7 @@ public interface IAutoTraderService
     /// <para>Used to request subsequent pages of results.</para>
     /// <para>Pagination volume can be calculated by totalResults / pageSize.</para>
     /// </param>
+    /// <param name="advertiserId">An optional advertiser id to return stock associated to a specific advertiser.</param>
     /// <param name="lifecycleState">
     /// Used to retrieve stock with a specific lifecycle state.
     /// </param>
@@ -30,9 +30,9 @@ public interface IAutoTraderService
     /// of records and a list of the records on the current page.
     /// </returns>
     Task<StockListResult?> GetStockAsync(
-        string? advertiserId = null,
-        int? pageSize = null,
+        int pageSize = 20,
         int? page = null,
+        string? advertiserId = null,
         LifecycleState? lifecycleState = null,
         string? searchId = null,
         string? stockId = null,
@@ -42,6 +42,10 @@ public interface IAutoTraderService
     /// <summary>
     /// Retrieves all stock records across all pages, optionally searching by the given parameters.
     /// </summary>
+    /// <param name="pageSize">
+    /// Use this to adjust the number of results returned per page.
+    /// 20 is the default and recommended however you may request up to 200.
+    /// </param>
     /// <param name="advertiserId">An optional advertiser id to return stock associated to a specific advertiser.</param>
     /// <param name="lifecycleState">
     /// Used to retrieve stock with a specific lifecycle state.
@@ -55,6 +59,7 @@ public interface IAutoTraderService
     /// the records on all pages.
     /// </returns>
     Task<List<AutoTraderVehicleData>> GetAllStockAsync(
+        int pageSize = 20,
         string? advertiserId = null,
         LifecycleState? lifecycleState = null,
         string? searchId = null,

@@ -36,9 +36,9 @@ namespace Pandorax.AutoTrader
 
         /// <inheritdoc />
         public async Task<StockListResult?> GetStockAsync(
-            string? advertiserId = null,
-            int? pageSize = null,
+            int pageSize = 20,
             int? page = null,
+            string? advertiserId = null,
             LifecycleState? lifecycleState = null,
             string? searchId = null,
             string? stockId = null,
@@ -48,9 +48,11 @@ namespace Pandorax.AutoTrader
             string? accessToken = await _accessTokenHandler.GetAccessTokenAsync();
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-            var query = BuildStockQueryString(advertiserId, pageSize, page, lifecycleState, searchId, stockId, registration, vin);
+            NameValueCollection query = BuildStockQueryString(advertiserId, pageSize, page, lifecycleState, searchId, stockId, registration, vin);
 
-            var url = string.Concat($"/service/stock-management/stock", query.Count > 0 ? "?" : null, query);
+            string url = query.Count > 0
+                ? $"/service/stock-management/stock?${query}"
+                : $"/service/stock-management/stock";
 
             string json = await _client.GetStringAsync(url);
 
@@ -61,6 +63,7 @@ namespace Pandorax.AutoTrader
 
         /// <inheritdoc />
         public async Task<List<AutoTraderVehicleData>> GetAllStockAsync(
+            int pageSize = 20,
             string? advertiserId = null,
             LifecycleState? lifecycleState = null,
             string? searchId = null,
@@ -74,8 +77,9 @@ namespace Pandorax.AutoTrader
             while (true)
             {
                 StockListResult? stock = await GetStockAsync(
+                    pageSize,
+                    page,
                     advertiserId,
-                    page: page,
                     lifecycleState: lifecycleState,
                     searchId: searchId,
                     stockId: stockId,
@@ -102,7 +106,7 @@ namespace Pandorax.AutoTrader
 
         private static NameValueCollection BuildStockQueryString(
           string? advertiserId,
-          int? pageSize,
+          int pageSize,
           int? page,
           LifecycleState? lifecycleState,
           string? searchId,
@@ -113,7 +117,7 @@ namespace Pandorax.AutoTrader
             Dictionary<string, string?> queryString = new()
             {
                 ["advertiserId"] = advertiserId,
-                ["pageSize"] = pageSize?.ToString(),
+                ["pageSize"] = pageSize.ToString(),
                 ["page"] = page?.ToString(),
                 ["lifecycleState"] = lifecycleState switch
                 {
