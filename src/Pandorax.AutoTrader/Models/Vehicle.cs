@@ -46,7 +46,7 @@ public class Vehicle
     public int? Doors { get; set; }
 
     [JsonPropertyName("driverPosition")]
-    public string DriverPosition { get; set; } = null!;
+    public string? DriverPosition { get; set; }
 
     [JsonPropertyName("drivetrain")]
     public Drivetrain? Drivetrain { get; set; }
@@ -115,22 +115,22 @@ public class Vehicle
     public int? LengthMm { get; set; }
 
     [JsonPropertyName("make")]
-    public string Make { get; set; } = null!;
+    public string? Make { get; set; }
 
     [JsonPropertyName("model")]
-    public string Model { get; set; } = null!;
+    public string? Model { get; set; }
 
     [JsonPropertyName("motExpiryDate")]
     public DateTimeOffset? MotExpiryDate { get; set; }
 
     [JsonPropertyName("odometerReadingMiles")]
-    public int OdometerReadingMiles { get; set; }
+    public int? OdometerReadingMiles { get; set; }
 
     [JsonPropertyName("owners")]
     public int? Owners { get; set; }
 
     [JsonPropertyName("ownershipCondition")]
-    public OwnershipCondition OwnershipCondition { get; set; }
+    public OwnershipCondition? OwnershipCondition { get; set; }
 
     [JsonPropertyName("plate")]
     public string? Plate { get; set; }
@@ -145,7 +145,7 @@ public class Vehicle
     public string? ServiceHistory { get; set; }
 
     [JsonPropertyName("standard")]
-    public Standard Standard { get; set; } = null!;
+    public Standard? Standard { get; set; }
 
     [JsonPropertyName("topSpeedMPH")]
     public int? TopSpeedMph { get; set; }
@@ -160,7 +160,7 @@ public class Vehicle
     public string? TyreCondition { get; set; }
 
     [JsonPropertyName("vehicleType")]
-    public VehicleType VehicleType { get; set; }
+    public VehicleType? VehicleType { get; set; }
 
     [JsonPropertyName("vin")]
     public string? Vin { get; set; }

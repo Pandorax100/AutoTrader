@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Models;
 public class RetailAdverts
@@ -52,5 +53,6 @@ public class RetailAdverts
     public bool? VatExcluded { get; set; }
 
     [JsonPropertyName("vatStatus")]
-    public VatStatus VatStatus { get; set; }
+    [JsonConverter(typeof(VatStatusConverter))]
+    public VatStatus? VatStatus { get; set; }
 }

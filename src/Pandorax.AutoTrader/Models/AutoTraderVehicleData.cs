@@ -5,23 +5,30 @@ namespace Pandorax.AutoTrader.Models;
 public class AutoTraderVehicleData
 {
     [JsonPropertyName("advertiser")]
-    public Advertiser Advertiser { get; set; } = null!;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public Advertiser? Advertiser { get; set; }
 
     [JsonPropertyName("adverts")]
-    public Adverts Adverts { get; set; } = null!;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public Adverts? Adverts { get; set; }
 
     [JsonPropertyName("check")]
-    public Check Check { get; set; } = null!;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public Check? Check { get; set; }
 
     [JsonPropertyName("features")]
-    public List<Feature> Features { get; set; } = null!;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<Feature> Features { get; set; } = new();
 
     [JsonPropertyName("media")]
-    public Media Media { get; set; } = null!;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public Media? Media { get; set; }
 
     [JsonPropertyName("metadata")]
-    public Metadata Metadata { get; set; } = null!;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public Metadata? Metadata { get; set; }
 
     [JsonPropertyName("vehicle")]
-    public Vehicle Vehicle { get; set; } = null!;
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public Vehicle? Vehicle { get; set; }
 }

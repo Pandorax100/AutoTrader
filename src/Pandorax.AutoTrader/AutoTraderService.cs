@@ -1,13 +1,17 @@
 using System.Collections.Specialized;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Web;
 using Microsoft.Extensions.Options;
 using Pandorax.AutoTrader.Constants;
+using Pandorax.AutoTrader.Converters;
 using Pandorax.AutoTrader.Models;
 using Pandorax.AutoTrader.Options;
 using Pandorax.AutoTrader.Services;
+using Pandorax.AutoTrader.Utils;
 
 namespace Pandorax.AutoTrader
 {
@@ -45,14 +49,10 @@ namespace Pandorax.AutoTrader
             string? registration = null,
             string? vin = null)
         {
-            string? accessToken = await _accessTokenHandler.GetAccessTokenAsync();
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
+            await AppendAccessTokenToRequestHeadersAsync();
             NameValueCollection query = BuildStockQueryString(advertiserId, pageSize, page, lifecycleState, searchId, stockId, registration, vin);
 
-            string url = query.Count > 0
-                ? $"/service/stock-management/stock?${query}"
-                : $"/service/stock-management/stock";
+            string url = Endpoints.SearchEndpoint(query);
 
             string json = await _client.GetStringAsync(url);
 
@@ -104,6 +104,55 @@ namespace Pandorax.AutoTrader
             return vehicles;
         }
 
+        public async Task<AutoTraderVehicleData> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle)
+        {
+            ArgumentNullException.ThrowIfNull(vehicle);
+
+            string json = JsonSerializer.Serialize(vehicle);
+
+            string url = Endpoints.CreateStockEndpoint(advertiserId);
+
+            await AppendAccessTokenToRequestHeadersAsync();
+
+            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json"),
+            };
+
+            using HttpResponseMessage response = await _client.SendAsync(request);
+
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            AutoTraderVehicleData? deserialised = await response.Content.ReadFromJsonAsync<AutoTraderVehicleData>();
+
+            return deserialised!;
+        }
+
+        public async Task<AutoTraderVehicleData> UpdateStockAsync(string stockId, AutoTraderVehicleData vehicle)
+        {
+            ArgumentNullException.ThrowIfNull(vehicle);
+            ArgumentNullException.ThrowIfNull(vehicle.Metadata);
+            ArgumentNullException.ThrowIfNull(stockId);
+
+            string json = JsonSerializer.Serialize(vehicle);
+
+            string url = Endpoints.UpdateStockEndpoint(stockId);
+
+            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Patch, url)
+            {
+                Content = new StringContent(json, Encoding.UTF8, "application/json"),
+            };
+
+            await AppendAccessTokenToRequestHeadersAsync();
+            using HttpResponseMessage response = await _client.SendAsync(request);
+
+            var responseJson = await response.Content.ReadAsStringAsync();
+
+            var deserialized = JsonSerializer.Deserialize<AutoTraderVehicleData>(responseJson);
+
+            return deserialized!;
+        }
+
         private static NameValueCollection BuildStockQueryString(
           string? advertiserId,
           int pageSize,
@@ -145,6 +194,12 @@ namespace Pandorax.AutoTrader
             }
 
             return query;
+        }
+
+        private async Task AppendAccessTokenToRequestHeadersAsync()
+        {
+            string? accessToken = await _accessTokenHandler.GetAccessTokenAsync();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }
     }
 }

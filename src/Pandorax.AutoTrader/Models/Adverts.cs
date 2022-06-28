@@ -7,13 +7,13 @@ public class Adverts
     public Price ForecourtPrice { get; set; } = null!;
 
     [JsonPropertyName("manufacturerApproved")]
-    public bool ManufacturerApproved { get; set; }
+    public bool? ManufacturerApproved { get; set; }
 
     [JsonPropertyName("preparationCosts")]
     public Price PreparationCosts { get; set; } = null!;
 
     [JsonPropertyName("priceOnApplication")]
-    public bool PriceOnApplication { get; set; }
+    public bool? PriceOnApplication { get; set; }
 
     [JsonPropertyName("purchasePrice")]
     public Price PurchasePrice { get; set; } = null!;
@@ -34,5 +34,5 @@ public class Adverts
     public Price StockInValue { get; set; } = null!;
 
     [JsonPropertyName("twelveMonthsMot")]
-    public bool TwelveMonthsMot { get; set; }
+    public bool? TwelveMonthsMot { get; set; }
 }

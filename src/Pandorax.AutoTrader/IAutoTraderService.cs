@@ -66,4 +66,7 @@ public interface IAutoTraderService
         string? stockId = null,
         string? registration = null,
         string? vin = null);
+
+    Task<AutoTraderVehicleData> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle);
+    Task<AutoTraderVehicleData> UpdateStockAsync(string stockId, AutoTraderVehicleData vehicle);
 }
