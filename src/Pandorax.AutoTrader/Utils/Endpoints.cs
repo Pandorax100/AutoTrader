@@ -21,4 +21,7 @@ internal static class Endpoints
 
     public static string UpdateStockEndpoint(string stockId)
         => $"/service/stock-management/stock/{stockId}";
+
+    internal static string? UploadImage(int advertiserId)
+        => $"/service/stock-management/images?advertiserId={advertiserId}";
 }

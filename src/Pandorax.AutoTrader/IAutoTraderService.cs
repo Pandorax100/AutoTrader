@@ -69,4 +69,6 @@ public interface IAutoTraderService
 
     Task<AutoTraderVehicleData> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle);
     Task<AutoTraderVehicleData> UpdateStockAsync(string stockId, AutoTraderVehicleData vehicle);
+
+    Task<string> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName);
 }

@@ -147,6 +147,25 @@ namespace Pandorax.AutoTrader
             return deserialized!;
         }
 
+        public async Task<string> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName)
+        {
+            using var streamContent = new StreamContent(stream);
+            using var multipartFormContent = new MultipartFormDataContent();
+
+            var content = new StreamContent(stream);
+            content.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
+            multipartFormContent.Add(content, "file", fileName);
+
+            using HttpResponseMessage response = await _client.PostAsync(Endpoints.UploadImage(advertiserId), multipartFormContent);
+
+            response.EnsureSuccessStatusCode();
+
+            ImageCreatedResponse? responseJson = await response.Content.ReadFromJsonAsync<ImageCreatedResponse>();
+
+            return responseJson!.ImageId;
+        }
+
         private static NameValueCollection BuildStockQueryString(
           string? advertiserId,
           int pageSize,
