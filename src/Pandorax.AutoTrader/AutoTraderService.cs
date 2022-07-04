@@ -12,6 +12,8 @@ using Pandorax.AutoTrader.Constants;
 using Pandorax.AutoTrader.Converters;
 using Pandorax.AutoTrader.Models;
 using Pandorax.AutoTrader.Models.Images;
+using Pandorax.AutoTrader.Models.Stock;
+using Pandorax.AutoTrader.Models.Vehicles;
 using Pandorax.AutoTrader.Options;
 using Pandorax.AutoTrader.Utils;
 
@@ -37,19 +39,9 @@ namespace Pandorax.AutoTrader
         }
 
         /// <inheritdoc />
-        public async Task<StockListResult?> GetStockAsync(
-            int pageSize = 20,
-            int? page = null,
-            string? advertiserId = null,
-            LifecycleState? lifecycleState = null,
-            string? searchId = null,
-            string? stockId = null,
-            string? registration = null,
-            string? vin = null)
+        public async Task<StockListResult?> GetStockAsync(StockSearchParameters parameters)
         {
-            NameValueCollection query = BuildStockQueryString(advertiserId, pageSize, page, lifecycleState, searchId, stockId, registration, vin);
-
-            string url = Endpoints.SearchEndpoint(query);
+            string url = Endpoints.SearchEndpoint(parameters);
 
             string json = await _client.GetStringAsync(url);
 
@@ -59,29 +51,15 @@ namespace Pandorax.AutoTrader
         }
 
         /// <inheritdoc />
-        public async Task<List<AutoTraderVehicleData>> GetAllStockAsync(
-            int pageSize = 20,
-            string? advertiserId = null,
-            LifecycleState? lifecycleState = null,
-            string? searchId = null,
-            string? stockId = null,
-            string? registration = null,
-            string? vin = null)
+        public async Task<List<AutoTraderVehicleData>> GetAllStockAsync(StockSearchParameters parameters)
         {
             List<AutoTraderVehicleData> vehicles = new();
 
-            int page = 1;
+            parameters.Page = 1;
+
             while (true)
             {
-                StockListResult? stock = await GetStockAsync(
-                    pageSize,
-                    page,
-                    advertiserId,
-                    lifecycleState: lifecycleState,
-                    searchId: searchId,
-                    stockId: stockId,
-                    registration: registration,
-                    vin: vin);
+                StockListResult? stock = await GetStockAsync(parameters);
 
                 if (stock is null)
                 {
@@ -95,7 +73,7 @@ namespace Pandorax.AutoTrader
                     break;
                 }
 
-                page++;
+                parameters.Page++;
             }
 
             return vehicles;
@@ -166,47 +144,36 @@ namespace Pandorax.AutoTrader
             return responseJson!.ImageId;
         }
 
-        private static NameValueCollection BuildStockQueryString(
-          string? advertiserId,
-          int pageSize,
-          int? page,
-          LifecycleState? lifecycleState,
-          string? searchId,
-          string? stockId,
-          string? registration,
-          string? vin)
+        public async Task<VehicleRoot?> GetVehicleDataAsync(
+            int advertiserId,
+            string vehicleRegistration,
+            bool includeMots = false,
+            bool includeFeatures = false,
+            bool includeFullVehicleCheck = false)
         {
-            Dictionary<string, string?> queryString = new()
-            {
-                ["advertiserId"] = advertiserId,
-                ["pageSize"] = pageSize.ToString(),
-                ["page"] = page?.ToString(),
-                ["lifecycleState"] = lifecycleState switch
-                {
-                    LifecycleState.Deleted => "DELETED",
-                    LifecycleState.Forecourt => "FORECOURT",
-                    LifecycleState.SaleInProgress => "SALE_IN_PROGRESS",
-                    LifecycleState.DueIn => "DUE_IN",
-                    LifecycleState.Wastebin => "WASTEBIN",
-                    _ => null,
-                },
-                ["searchId"] = searchId,
-                ["stockId"] = stockId,
-                ["registration"] = registration,
-                ["vin"] = vin,
-            };
+            ArgumentNullException.ThrowIfNull(vehicleRegistration);
 
-            NameValueCollection query = HttpUtility.ParseQueryString(string.Empty);
+            string url = Endpoints.VehicleData(
+                advertiserId,
+                vehicleRegistration,
+                includeMots,
+                includeFeatures,
+                includeFullVehicleCheck);
 
-            foreach (var (key, value) in queryString)
+            using HttpResponseMessage response = await _client.GetAsync(url);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                if (value is not null)
-                {
-                    query.Add(key, value);
-                }
+                return null;
             }
 
-            return query;
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            VehicleRoot? deserialized = JsonSerializer.Deserialize<VehicleRoot>(json);
+
+            return deserialized;
         }
     }
 }
