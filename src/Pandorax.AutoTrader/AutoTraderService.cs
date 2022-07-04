@@ -1,4 +1,5 @@
 using System.Collections.Specialized;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Web;
 using Microsoft.Extensions.Options;
+using Pandorax.AutoTrader.Authorization;
 using Pandorax.AutoTrader.Constants;
 using Pandorax.AutoTrader.Converters;
 using Pandorax.AutoTrader.Models;
+using Pandorax.AutoTrader.Models.Images;
 using Pandorax.AutoTrader.Options;
-using Pandorax.AutoTrader.Services;
 using Pandorax.AutoTrader.Utils;
 
 namespace Pandorax.AutoTrader
@@ -22,14 +24,10 @@ namespace Pandorax.AutoTrader
             NumberHandling = JsonNumberHandling.AllowReadingFromString,
         };
 
-        private readonly AccessTokenHandler _accessTokenHandler;
         private readonly HttpClient _client;
 
-        public AutoTraderService(
-            AccessTokenHandler accessTokenHandler,
-            HttpClient client)
+        public AutoTraderService(HttpClient client)
         {
-            _accessTokenHandler = accessTokenHandler;
             _client = client;
         }
 
@@ -49,7 +47,6 @@ namespace Pandorax.AutoTrader
             string? registration = null,
             string? vin = null)
         {
-            await AppendAccessTokenToRequestHeadersAsync();
             NameValueCollection query = BuildStockQueryString(advertiserId, pageSize, page, lifecycleState, searchId, stockId, registration, vin);
 
             string url = Endpoints.SearchEndpoint(query);
@@ -112,8 +109,6 @@ namespace Pandorax.AutoTrader
 
             string url = Endpoints.CreateStockEndpoint(advertiserId);
 
-            await AppendAccessTokenToRequestHeadersAsync();
-
             using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url)
             {
                 Content = new StringContent(json, Encoding.UTF8, "application/json"),
@@ -143,7 +138,6 @@ namespace Pandorax.AutoTrader
                 Content = new StringContent(json, Encoding.UTF8, "application/json"),
             };
 
-            await AppendAccessTokenToRequestHeadersAsync();
             using HttpResponseMessage response = await _client.SendAsync(request);
 
             var responseJson = await response.Content.ReadAsStringAsync();
@@ -194,12 +188,6 @@ namespace Pandorax.AutoTrader
             }
 
             return query;
-        }
-
-        private async Task AppendAccessTokenToRequestHeadersAsync()
-        {
-            string? accessToken = await _accessTokenHandler.GetAccessTokenAsync();
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Options;
 using Pandorax.AutoTrader.Options;
 
-namespace Pandorax.AutoTrader.Services
+namespace Pandorax.AutoTrader.Authorization
 {
     internal class AccessTokenHandler
     {

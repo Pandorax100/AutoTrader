@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Pandorax.AutoTrader.Converters;
 
-namespace Pandorax.AutoTrader.Services
+namespace Pandorax.AutoTrader.Authorization
 {
     /// <summary>
     /// Represents the authenticate response from the AutoTrader API.
