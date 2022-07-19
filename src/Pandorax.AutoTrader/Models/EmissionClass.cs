@@ -5,6 +5,7 @@ namespace Pandorax.AutoTrader.Models;
 [JsonConverter(typeof(EmissionClassConverter))]
 public enum EmissionClass
 {
+    Euro1,
     Euro2,
     Euro3,
     Euro4,

@@ -24,6 +24,6 @@ public class MotTest
     [JsonPropertyName("motTestNumber")]
     public string MotTestNumber { get; set; } = string.Empty;
 
-    [JsonPropertyName("comments")]
+    [JsonPropertyName("rfrAndComments")]
     public List<MotComment> Comments { get; set; } = new();
 }

@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Converters;
+
 internal class DrivetrainConverter : JsonConverter<Drivetrain>
 {
     public override Drivetrain Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

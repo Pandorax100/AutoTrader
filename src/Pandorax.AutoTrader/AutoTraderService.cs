@@ -1,31 +1,18 @@
-using System.Collections.Specialized;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Web;
-using Microsoft.Extensions.Options;
-using Pandorax.AutoTrader.Authorization;
-using Pandorax.AutoTrader.Constants;
-using Pandorax.AutoTrader.Converters;
 using Pandorax.AutoTrader.Models;
 using Pandorax.AutoTrader.Models.Images;
 using Pandorax.AutoTrader.Models.Stock;
 using Pandorax.AutoTrader.Models.Vehicles;
-using Pandorax.AutoTrader.Options;
+using Pandorax.AutoTrader.Serializer;
 using Pandorax.AutoTrader.Utils;
 
 namespace Pandorax.AutoTrader
 {
     internal class AutoTraderService : IAutoTraderService
     {
-        private static readonly JsonSerializerOptions JsonSerializerOptions = new()
-        {
-            NumberHandling = JsonNumberHandling.AllowReadingFromString,
-        };
-
         private readonly HttpClient _client;
 
         public AutoTraderService(HttpClient client)
@@ -35,7 +22,7 @@ namespace Pandorax.AutoTrader
 
         public AutoTraderNotification? ParseNotificationJson(string json)
         {
-            return JsonSerializer.Deserialize<AutoTraderNotification>(json, JsonSerializerOptions);
+            return JsonSerializer.Deserialize<AutoTraderNotification>(json, AutoTraderJsonSerializer.Options);
         }
 
         /// <inheritdoc />
@@ -45,7 +32,7 @@ namespace Pandorax.AutoTrader
 
             string json = await _client.GetStringAsync(url);
 
-            StockListResult? parsed = JsonSerializer.Deserialize<StockListResult>(json, JsonSerializerOptions);
+            StockListResult? parsed = JsonSerializer.Deserialize<StockListResult>(json, AutoTraderJsonSerializer.Options);
 
             return parsed;
         }

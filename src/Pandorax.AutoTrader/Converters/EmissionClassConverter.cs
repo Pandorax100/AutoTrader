@@ -9,6 +9,7 @@ internal class EmissionClassConverter : JsonConverter<EmissionClass>
     {
         return reader.GetString() switch
         {
+            "Euro 1" => EmissionClass.Euro1,
             "Euro 2" => EmissionClass.Euro2,
             "Euro 3" => EmissionClass.Euro3,
             "Euro 4" => EmissionClass.Euro4,
@@ -22,6 +23,7 @@ internal class EmissionClassConverter : JsonConverter<EmissionClass>
     {
         writer.WriteStringValue(value switch
         {
+            EmissionClass.Euro1 => "Euro 1",
             EmissionClass.Euro2 => "Euro 2",
             EmissionClass.Euro3 => "Euro 3",
             EmissionClass.Euro4 => "Euro 4",
