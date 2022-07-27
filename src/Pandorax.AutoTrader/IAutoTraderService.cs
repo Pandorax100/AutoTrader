@@ -41,5 +41,6 @@ public interface IAutoTraderService
         string vehicleRegistration,
         bool includeMots = false,
         bool includeFeatures = false,
+        bool includeBasicVehicleCheck = false,
         bool includeFullVehicleCheck = false);
 }

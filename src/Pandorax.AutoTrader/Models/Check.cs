@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
 namespace Pandorax.AutoTrader.Models;
+
 public class Check
 {
     [JsonPropertyName("colourChanged")]

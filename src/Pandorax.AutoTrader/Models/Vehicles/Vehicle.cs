@@ -89,7 +89,7 @@ public partial class Vehicle
     public int? EnginePowerPs { get; set; }
 
     [JsonPropertyName("engineTorqueLBFT")]
-    public int? EngineTorqueLbft { get; set; }
+    public double? EngineTorqueLbft { get; set; }
 
     [JsonPropertyName("engineTorqueNM")]
     public int? EngineTorqueNm { get; set; }

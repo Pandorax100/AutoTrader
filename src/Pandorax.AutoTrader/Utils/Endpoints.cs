@@ -5,7 +5,7 @@ using Pandorax.AutoTrader.Models.Stock;
 
 namespace Pandorax.AutoTrader.Utils;
 
-internal static class Endpoints
+public static class Endpoints
 {
     internal static string SearchEndpoint(StockSearchParameters stockSearchParameters)
     {
@@ -25,11 +25,12 @@ internal static class Endpoints
     internal static string? UploadImage(int advertiserId)
         => $"/service/stock-management/images?advertiserId={advertiserId}";
 
-    internal static string VehicleData(
+    public static string VehicleData(
         int advertiserId,
         string vehicleRegistration,
         bool includeMots,
         bool includeFeatures,
+        bool includeBasicVehicleCheck,
         bool includeFullVehicleCheck)
     {
         var query = HttpUtility.ParseQueryString(string.Empty);
@@ -44,6 +45,11 @@ internal static class Endpoints
         if (includeFeatures)
         {
             query.Add("features", "true");
+        }
+
+        if (includeBasicVehicleCheck)
+        {
+            query.Add("basicVehicleCheck", "true");
         }
 
         if (includeFullVehicleCheck)
