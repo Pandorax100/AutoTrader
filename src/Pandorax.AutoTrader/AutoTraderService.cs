@@ -22,7 +22,7 @@ namespace Pandorax.AutoTrader
 
         public AutoTraderNotification? ParseNotificationJson(string json)
         {
-            return JsonSerializer.Deserialize<AutoTraderNotification>(json, AutoTraderJsonSerializer.Options);
+            return AutoTraderJsonSerializer.Deserialize<AutoTraderNotification>(json);
         }
 
         /// <inheritdoc />
@@ -32,7 +32,7 @@ namespace Pandorax.AutoTrader
 
             string json = await _client.GetStringAsync(url);
 
-            StockListResult? parsed = JsonSerializer.Deserialize<StockListResult>(json, AutoTraderJsonSerializer.Options);
+            StockListResult? parsed = AutoTraderJsonSerializer.Deserialize<StockListResult>(json);
 
             return parsed;
         }
@@ -107,7 +107,7 @@ namespace Pandorax.AutoTrader
 
             var responseJson = await response.Content.ReadAsStringAsync();
 
-            var deserialized = JsonSerializer.Deserialize<AutoTraderVehicleData>(responseJson);
+            var deserialized = AutoTraderJsonSerializer.Deserialize<AutoTraderVehicleData>(responseJson);
 
             return deserialized!;
         }
@@ -136,6 +136,7 @@ namespace Pandorax.AutoTrader
             string vehicleRegistration,
             bool includeMots = false,
             bool includeFeatures = false,
+            bool includeBasicVehicleCheck = false,
             bool includeFullVehicleCheck = false)
         {
             ArgumentNullException.ThrowIfNull(vehicleRegistration);
@@ -145,6 +146,7 @@ namespace Pandorax.AutoTrader
                 vehicleRegistration,
                 includeMots,
                 includeFeatures,
+                includeBasicVehicleCheck,
                 includeFullVehicleCheck);
 
             using HttpResponseMessage response = await _client.GetAsync(url);
@@ -158,7 +160,7 @@ namespace Pandorax.AutoTrader
 
             string json = await response.Content.ReadAsStringAsync();
 
-            VehicleRoot? deserialized = JsonSerializer.Deserialize<VehicleRoot>(json);
+            VehicleRoot? deserialized = AutoTraderJsonSerializer.Deserialize<VehicleRoot>(json);
 
             return deserialized;
         }

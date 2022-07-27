@@ -19,4 +19,9 @@ public class AutoTraderJsonSerializer
             new VatStatusConverter(),
         },
     };
+
+    public static TValue? Deserialize<TValue>(string json)
+    {
+        return JsonSerializer.Deserialize<TValue>(json, Options);
+    }
 }
