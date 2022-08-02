@@ -9,7 +9,7 @@ public class StockSearchParameters
     /// <summary>
     /// Gets or sets the advertiser id. Only stock for this advertiser id will be returned.
     /// </summary>
-    public string? AdvertiserId { get; set; }
+    public int? AdvertiserId { get; set; }
 
     /// <summary>
     /// Gets or sets the number of results returned per page.

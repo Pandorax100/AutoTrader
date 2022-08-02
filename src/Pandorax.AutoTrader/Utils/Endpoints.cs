@@ -5,24 +5,24 @@ using Pandorax.AutoTrader.Models.Stock;
 
 namespace Pandorax.AutoTrader.Utils;
 
-public static class Endpoints
+internal static class Endpoints
 {
-    internal static string SearchEndpoint(StockSearchParameters stockSearchParameters)
+    public static string SearchEndpoint(StockSearchParameters stockSearchParameters)
     {
         var query = BuildStockQueryString(stockSearchParameters);
 
         return query is not null && query.Count > 0
-            ? $"/service/stock-management/stock?${query}"
+            ? $"/service/stock-management/stock?{query}"
             : $"/service/stock-management/stock";
     }
 
-    internal static string CreateStockEndpoint(int advertiserId)
+    public static string CreateStockEndpoint(int advertiserId)
         => $"/service/stock-management/stock?advertiserId={advertiserId}";
 
-    internal static string UpdateStockEndpoint(string stockId)
+    public static string UpdateStockEndpoint(string stockId)
         => $"/service/stock-management/stock/{stockId}";
 
-    internal static string? UploadImage(int advertiserId)
+    public static string? UploadImage(int advertiserId)
         => $"/service/stock-management/images?advertiserId={advertiserId}";
 
     public static string VehicleData(
@@ -64,7 +64,7 @@ public static class Endpoints
     {
         Dictionary<string, string?> queryString = new()
         {
-            ["advertiserId"] = parameters.AdvertiserId,
+            ["advertiserId"] = parameters.AdvertiserId?.ToString(),
             ["pageSize"] = parameters.PageSize.ToString(),
             ["page"] = parameters.Page?.ToString(),
             ["lifecycleState"] = parameters.LifecycleState switch

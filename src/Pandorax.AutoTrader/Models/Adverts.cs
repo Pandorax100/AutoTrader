@@ -25,10 +25,10 @@ public class Adverts
     public RetailAdverts RetailAdverts { get; set; } = null!;
 
     [JsonPropertyName("soldDate")]
-    public DateTimeOffset? SoldDate { get; set; }
+    public DateTime? SoldDate { get; set; }
 
     [JsonPropertyName("stockInDate")]
-    public DateTimeOffset? StockInDate { get; set; }
+    public DateTime? StockInDate { get; set; }
 
     [JsonPropertyName("stockInValue")]
     public Price StockInValue { get; set; } = null!;

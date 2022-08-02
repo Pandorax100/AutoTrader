@@ -1,8 +1,8 @@
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Pandorax.AutoTrader.Models.Images;
 
-public class ImageCreatedResponse
+public class UploadImageResponse
 {
     [JsonPropertyName("imageId")]
     public string ImageId { get; set; } = string.Empty;

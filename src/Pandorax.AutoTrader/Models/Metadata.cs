@@ -4,7 +4,7 @@ namespace Pandorax.AutoTrader.Models;
 public class Metadata
 {
     [JsonPropertyName("dateOnForecourt")]
-    public DateTimeOffset DateOnForecourt { get; set; }
+    public DateTime DateOnForecourt { get; set; }
 
     [JsonPropertyName("externalStockId")]
     public string ExternalStockId { get; set; } = null!;
@@ -13,10 +13,10 @@ public class Metadata
     public string? ExternalStockReference { get; set; }
 
     [JsonPropertyName("lastUpdated")]
-    public DateTimeOffset LastUpdated { get; set; }
+    public DateTime LastUpdated { get; set; }
 
     [JsonPropertyName("lastUpdatedByAdvertiser")]
-    public DateTimeOffset LastUpdatedByAdvertiser { get; set; }
+    public DateTime LastUpdatedByAdvertiser { get; set; }
 
     [JsonPropertyName("lifecycleState")]
     public LifecycleState LifecycleState { get; set; }

@@ -31,4 +31,8 @@ public class AutoTraderVehicleData
     [JsonPropertyName("vehicle")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public Vehicle? Vehicle { get; set; }
+
+    [JsonPropertyName("messages")]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public List<AutoTraderMessage>? Messages { get; set; }
 }

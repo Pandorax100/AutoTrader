@@ -65,13 +65,13 @@ public partial class Vehicle
     public int Doors { get; set; }
 
     [JsonPropertyName("drivetrain")]
-    public Drivetrain Drivetrain { get; set; }
+    public string? Drivetrain { get; set; }
 
     [JsonPropertyName("driveType")]
     public string? DriveType { get; set; }
 
     [JsonPropertyName("emissionClass")]
-    public EmissionClass EmissionClass { get; set; }
+    public EmissionClass? EmissionClass { get; set; }
 
     [JsonPropertyName("engineCapacityCC")]
     public int EngineCapacityCC { get; set; }

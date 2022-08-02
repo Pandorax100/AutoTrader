@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
 namespace Pandorax.AutoTrader.Models;
+
 public class Standard
 {
     [JsonPropertyName("bodyType")]
@@ -13,7 +14,7 @@ public class Standard
     public string? Derivative { get; set; }
 
     [JsonPropertyName("drivetrain")]
-    public Drivetrain? Drivetrain { get; set; }
+    public string? Drivetrain { get; set; }
 
     [JsonPropertyName("fuelType")]
     public string? FuelType { get; set; }

@@ -1,4 +1,5 @@
 using Pandorax.AutoTrader.Models;
+using Pandorax.AutoTrader.Models.Images;
 using Pandorax.AutoTrader.Models.Stock;
 using Pandorax.AutoTrader.Models.Vehicles;
 
@@ -31,10 +32,11 @@ public interface IAutoTraderService
     /// </returns>
     Task<List<AutoTraderVehicleData>> GetAllStockAsync(StockSearchParameters parameters);
 
-    Task<AutoTraderVehicleData> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle);
-    Task<AutoTraderVehicleData> UpdateStockAsync(string stockId, AutoTraderVehicleData vehicle);
+    Task<CreateStockResponse> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle);
+    Task<UpdateStockResponse> UpdateStockAsync(string stockId, AutoTraderVehicleData vehicle);
+    Task<AutoTraderVehicleData> RemoveStockItemAsync(string stockId);
 
-    Task<string> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName);
+    Task<UploadImageResponse> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName);
 
     Task<VehicleRoot?> GetVehicleDataAsync(
         int advertiserId,

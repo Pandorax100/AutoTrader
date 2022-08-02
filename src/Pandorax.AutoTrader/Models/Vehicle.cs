@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Models;
 
@@ -50,7 +51,7 @@ public class Vehicle
     public string? DriverPosition { get; set; }
 
     [JsonPropertyName("drivetrain")]
-    public Drivetrain? Drivetrain { get; set; }
+    public string? Drivetrain { get; set; }
 
     [JsonPropertyName("emissionClass")]
     public EmissionClass? EmissionClass { get; set; }
@@ -71,7 +72,7 @@ public class Vehicle
     public string? ExteriorFinish { get; set; }
 
     [JsonPropertyName("firstRegistrationDate")]
-    public DateTimeOffset? FirstRegistrationDate { get; set; }
+    public DateTime? FirstRegistrationDate { get; set; }
 
     [JsonPropertyName("fuelCapacityLitres")]
     public double? FuelCapacityLitres { get; set; }
@@ -104,10 +105,10 @@ public class Vehicle
     public string? InteriorColour { get; set; }
 
     [JsonPropertyName("interiorCondition")]
-    public int? InteriorCondition { get; set; }
+    public string? InteriorCondition { get; set; }
 
     [JsonPropertyName("lastServiceDate")]
-    public DateTimeOffset? LastServiceDate { get; set; }
+    public DateTime? LastServiceDate { get; set; }
 
     [JsonPropertyName("lastServiceOdometerReadingMiles")]
     public int? LastServiceOdometerReadingMiles { get; set; }
@@ -122,7 +123,7 @@ public class Vehicle
     public string? Model { get; set; }
 
     [JsonPropertyName("motExpiryDate")]
-    public DateTimeOffset? MotExpiryDate { get; set; }
+    public DateTime? MotExpiryDate { get; set; }
 
     [JsonPropertyName("odometerReadingMiles")]
     public int? OdometerReadingMiles { get; set; }

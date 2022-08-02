@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Serializer;
@@ -10,7 +11,6 @@ public class AutoTraderJsonSerializer
         Converters =
         {
             new DateOnlyConverter(),
-            new DrivetrainConverter(),
             new EmissionClassConverter(),
             new LifecycleStateConverter(),
             new OwnershipConditionConverter(),
@@ -18,6 +18,14 @@ public class AutoTraderJsonSerializer
             new StockEventSourceConverter(),
             new VatStatusConverter(),
         },
+    };
+
+    /// <summary>
+    /// An instance of the <see cref="JsonSerializerOptions"/> for use with the AutoTrader API which does not write default values.
+    /// </summary>
+    public static readonly JsonSerializerOptions OptionsNoWriteNull = new JsonSerializerOptions(Options)
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
     };
 
     public static TValue? Deserialize<TValue>(string json)
