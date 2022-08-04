@@ -1,8 +1,9 @@
-using Pandorax.AutoTrader.Models;
-using Pandorax.AutoTrader.Models.Images;
-using Pandorax.AutoTrader.Models.Stock;
-using Pandorax.AutoTrader.Models.UpdateStock;
-using Pandorax.AutoTrader.Models.Vehicles;
+using Pandorax.AutoTrader.Api.Images;
+using Pandorax.AutoTrader.Api.Notifications;
+using Pandorax.AutoTrader.Api.Stock;
+using Pandorax.AutoTrader.Api.Stock.Read;
+using Pandorax.AutoTrader.Api.Stock.Update;
+using Pandorax.AutoTrader.Api.Vehicles;
 
 namespace Pandorax.AutoTrader;
 
@@ -33,8 +34,8 @@ public interface IAutoTraderService
     /// </returns>
     Task<List<AutoTraderVehicleData>> GetAllStockAsync(StockSearchParameters parameters);
 
-    Task<CreateStockResponse> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle);
-    Task<UpdateStockResponse> UpdateStockAsync(string stockId, UpdateAutoTraderVehicleData vehicle);
+    Task<UpdateStockResponse> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle);
+    Task<UpdateStockResponse> UpdateStockAsync(string stockId, AutoTraderVehicleUpdateRequest vehicle);
     Task<UpdateStockResponse> RemoveStockItemAsync(string stockId);
 
     Task<UploadImageResponse> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName);

@@ -1,7 +1,7 @@
 using System.Collections.Specialized;
 using System.Web;
-using Pandorax.AutoTrader.Models;
-using Pandorax.AutoTrader.Models.Stock;
+using Pandorax.AutoTrader.Api.Stock;
+using Pandorax.AutoTrader.Api.Stock.Common;
 
 namespace Pandorax.AutoTrader.Utils;
 

@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using Pandorax.AutoTrader.Models;
+using Pandorax.AutoTrader.Api.Notifications;
 
 namespace Pandorax.AutoTrader.Converters;
 
