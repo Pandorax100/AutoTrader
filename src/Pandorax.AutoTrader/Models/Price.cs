@@ -1,11 +1,11 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 public class Price
 {
-    [JsonPropertyName("amountEUR")]
+    [JsonProperty("amountEUR")]
     public int? AmountEur { get; set; }
 
-    [JsonPropertyName("amountGBP")]
+    [JsonProperty("amountGBP")]
     public int? AmountGbp { get; set; }
 }

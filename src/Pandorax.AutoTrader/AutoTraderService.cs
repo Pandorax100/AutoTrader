@@ -1,10 +1,11 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Models;
 using Pandorax.AutoTrader.Models.Images;
 using Pandorax.AutoTrader.Models.Stock;
+using Pandorax.AutoTrader.Models.UpdateStock;
 using Pandorax.AutoTrader.Models.Vehicles;
 using Pandorax.AutoTrader.Serializer;
 using Pandorax.AutoTrader.Utils;
@@ -30,9 +31,11 @@ namespace Pandorax.AutoTrader
         {
             string url = Endpoints.SearchEndpoint(parameters);
 
-            StockListResult? parsed = await _client.GetFromJsonAsync<StockListResult>(url, AutoTraderJsonSerializer.Options);
+            string responseJson = await _client.GetStringAsync(url);
 
-            return parsed;
+            StockListResult? result = AutoTraderJsonSerializer.Deserialize<StockListResult>(responseJson);
+
+            return result;
         }
 
         /// <inheritdoc />
@@ -68,7 +71,7 @@ namespace Pandorax.AutoTrader
         {
             ArgumentNullException.ThrowIfNull(vehicle);
 
-            string json = JsonSerializer.Serialize(vehicle, AutoTraderJsonSerializer.OptionsNoWriteNull);
+            string json = AutoTraderJsonSerializer.Serialize(vehicle);
 
             string url = Endpoints.CreateStockEndpoint(advertiserId);
 
@@ -81,7 +84,7 @@ namespace Pandorax.AutoTrader
 
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            AutoTraderVehicleData? deserialised = await response.Content.ReadFromJsonAsync<AutoTraderVehicleData>(AutoTraderJsonSerializer.Options);
+            AutoTraderVehicleData? deserialised = AutoTraderJsonSerializer.Deserialize<AutoTraderVehicleData>(responseBody);
 
             return new CreateStockResponse
             {
@@ -91,26 +94,25 @@ namespace Pandorax.AutoTrader
             };
         }
 
-        public async Task<UpdateStockResponse> UpdateStockAsync(string stockId, AutoTraderVehicleData vehicle)
+        public async Task<UpdateStockResponse> UpdateStockAsync(string stockId, UpdateAutoTraderVehicleData vehicle)
         {
             ArgumentNullException.ThrowIfNull(vehicle);
-            ArgumentNullException.ThrowIfNull(vehicle.Metadata);
             ArgumentNullException.ThrowIfNull(stockId);
 
-            string json = JsonSerializer.Serialize(vehicle);
+            string requestJson = AutoTraderJsonSerializer.Serialize(vehicle);
 
             string url = Endpoints.UpdateStockEndpoint(stockId);
 
             using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Patch, url)
             {
-                Content = new StringContent(json, Encoding.UTF8, "application/json"),
+                Content = new StringContent(requestJson, Encoding.UTF8, "application/json"),
             };
 
             using HttpResponseMessage response = await _client.SendAsync(request);
 
             var responseJson = await response.Content.ReadAsStringAsync();
 
-            var deserialized = await response.Content.ReadFromJsonAsync<AutoTraderVehicleData>(AutoTraderJsonSerializer.Options);
+            var deserialized = AutoTraderJsonSerializer.Deserialize<AutoTraderVehicleData>(responseJson);
 
             return new UpdateStockResponse
             {
@@ -120,19 +122,19 @@ namespace Pandorax.AutoTrader
             };
         }
 
-        public async Task<AutoTraderVehicleData> RemoveStockItemAsync(string stockId)
+        public async Task<UpdateStockResponse> RemoveStockItemAsync(string stockId)
         {
             ArgumentNullException.ThrowIfNull(stockId);
 
-            var payload = new AutoTraderVehicleData
+            var payload = new UpdateAutoTraderVehicleData
             {
-                Metadata = new Metadata
+                Metadata = new Models.UpdateStock.Metadata
                 {
                     LifecycleState = LifecycleState.Deleted,
                 },
-                Adverts = new Adverts
+                Adverts = new Models.UpdateStock.Adverts
                 {
-                    RetailAdverts = new RetailAdverts
+                    RetailAdverts = new Models.UpdateStock.RetailAdverts
                     {
                         AdvertiserAdvert = new Advert(Status.NotPublished),
                         AutotraderAdvert = new Advert(Status.NotPublished),
@@ -143,21 +145,7 @@ namespace Pandorax.AutoTrader
                 },
             };
 
-            string json = JsonSerializer.Serialize(payload, AutoTraderJsonSerializer.OptionsNoWriteNull);
-            string url = Endpoints.UpdateStockEndpoint(stockId);
-
-            using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Patch, url)
-            {
-                Content = new StringContent(json, Encoding.UTF8, "application/json"),
-            };
-
-            using HttpResponseMessage response = await _client.SendAsync(request);
-
-            var responseJson = await response.Content.ReadAsStringAsync();
-
-            AutoTraderVehicleData? deserialized = AutoTraderJsonSerializer.Deserialize<AutoTraderVehicleData>(responseJson);
-
-            return deserialized!;
+            return await UpdateStockAsync(stockId, payload);
         }
 
         public async Task<UploadImageResponse> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName)

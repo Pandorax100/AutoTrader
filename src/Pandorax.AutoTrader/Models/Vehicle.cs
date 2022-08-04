@@ -1,187 +1,186 @@
-using System.Text.Json.Serialization;
-using Pandorax.AutoTrader.Converters;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class Vehicle
 {
-    [JsonPropertyName("axleConfiguration")]
+    [JsonProperty("axleConfiguration")]
     public string? AxleConfiguration { get; set; }
 
-    [JsonPropertyName("badgeEngineSizeLitres")]
+    [JsonProperty("badgeEngineSizeLitres")]
     public double? BadgeEngineSizeLitres { get; set; }
 
-    [JsonPropertyName("bedroomLayout")]
+    [JsonProperty("bedroomLayout")]
     public string? BedroomLayout { get; set; }
 
-    [JsonPropertyName("berths")]
+    [JsonProperty("berths")]
     public int? Berths { get; set; }
 
-    [JsonPropertyName("bodyCondition")]
+    [JsonProperty("bodyCondition")]
     public string? BodyCondition { get; set; }
 
-    [JsonPropertyName("bodyType")]
+    [JsonProperty("bodyType")]
     public string? BodyType { get; set; }
 
-    [JsonPropertyName("bootSpaceSeatsDownLitres")]
+    [JsonProperty("bootSpaceSeatsDownLitres")]
     public double? BootSpaceSeatsDownLitres { get; set; }
 
-    [JsonPropertyName("bootSpaceSeatsUpLitres")]
+    [JsonProperty("bootSpaceSeatsUpLitres")]
     public double? BootSpaceSeatsUpLitres { get; set; }
 
-    [JsonPropertyName("cabType")]
+    [JsonProperty("cabType")]
     public string? CabType { get; set; }
 
-    [JsonPropertyName("co2EmissionGPKM")]
+    [JsonProperty("co2EmissionGPKM")]
     public int? Co2EmissionGpkm { get; set; }
 
-    [JsonPropertyName("colour")]
+    [JsonProperty("colour")]
     public string? Colour { get; set; }
 
-    [JsonPropertyName("derivative")]
+    [JsonProperty("derivative")]
     public string? Derivative { get; set; }
 
-    [JsonPropertyName("derivativeId")]
+    [JsonProperty("derivativeId")]
     public string? DerivativeId { get; set; }
 
-    [JsonPropertyName("doors")]
+    [JsonProperty("doors")]
     public int? Doors { get; set; }
 
-    [JsonPropertyName("driverPosition")]
+    [JsonProperty("driverPosition")]
     public string? DriverPosition { get; set; }
 
-    [JsonPropertyName("drivetrain")]
+    [JsonProperty("drivetrain")]
     public string? Drivetrain { get; set; }
 
-    [JsonPropertyName("emissionClass")]
+    [JsonProperty("emissionClass")]
     public EmissionClass? EmissionClass { get; set; }
 
-    [JsonPropertyName("endLayout")]
+    [JsonProperty("endLayout")]
     public string? EndLayout { get; set; }
 
-    [JsonPropertyName("engineCapacityCC")]
+    [JsonProperty("engineCapacityCC")]
     public int? EngineCapacityCc { get; set; }
 
-    [JsonPropertyName("enginePowerBHP")]
+    [JsonProperty("enginePowerBHP")]
     public double? EnginePowerBhp { get; set; }
 
-    [JsonPropertyName("exDemo")]
+    [JsonProperty("exDemo")]
     public bool? ExDemo { get; set; }
 
-    [JsonPropertyName("exteriorFinish")]
+    [JsonProperty("exteriorFinish")]
     public string? ExteriorFinish { get; set; }
 
-    [JsonPropertyName("firstRegistrationDate")]
+    [JsonProperty("firstRegistrationDate")]
     public DateTime? FirstRegistrationDate { get; set; }
 
-    [JsonPropertyName("fuelCapacityLitres")]
+    [JsonProperty("fuelCapacityLitres")]
     public double? FuelCapacityLitres { get; set; }
 
-    [JsonPropertyName("fuelEconomyNEDCCombinedMPG")]
+    [JsonProperty("fuelEconomyNEDCCombinedMPG")]
     public double? FuelEconomyNedcCombinedMpg { get; set; }
 
-    [JsonPropertyName("fuelEconomyNEDCExtraUrbanMPG")]
+    [JsonProperty("fuelEconomyNEDCExtraUrbanMPG")]
     public double? FuelEconomyNedcExtraUrbanMpg { get; set; }
 
-    [JsonPropertyName("fuelEconomyNEDCUrbanMPG")]
+    [JsonProperty("fuelEconomyNEDCUrbanMPG")]
     public double? FuelEconomyNedcUrbanMpg { get; set; }
 
-    [JsonPropertyName("fuelEconomyWLTPCombinedMPG")]
+    [JsonProperty("fuelEconomyWLTPCombinedMPG")]
     public double? FuelEconomyWltpCombinedMpg { get; set; }
 
-    [JsonPropertyName("fuelType")]
+    [JsonProperty("fuelType")]
     public string? FuelType { get; set; }
 
-    [JsonPropertyName("heightMM")]
+    [JsonProperty("heightMM")]
     public int? HeightMm { get; set; }
 
-    [JsonPropertyName("insuranceGroup")]
+    [JsonProperty("insuranceGroup")]
     public string? InsuranceGroup { get; set; }
 
-    [JsonPropertyName("insuranceSecurityCode")]
+    [JsonProperty("insuranceSecurityCode")]
     public Insurance? InsuranceSecurityCode { get; set; }
 
-    [JsonPropertyName("interiorColour")]
+    [JsonProperty("interiorColour")]
     public string? InteriorColour { get; set; }
 
-    [JsonPropertyName("interiorCondition")]
+    [JsonProperty("interiorCondition")]
     public string? InteriorCondition { get; set; }
 
-    [JsonPropertyName("lastServiceDate")]
+    [JsonProperty("lastServiceDate")]
     public DateTime? LastServiceDate { get; set; }
 
-    [JsonPropertyName("lastServiceOdometerReadingMiles")]
+    [JsonProperty("lastServiceOdometerReadingMiles")]
     public int? LastServiceOdometerReadingMiles { get; set; }
 
-    [JsonPropertyName("lengthMM")]
+    [JsonProperty("lengthMM")]
     public int? LengthMm { get; set; }
 
-    [JsonPropertyName("make")]
+    [JsonProperty("make")]
     public string? Make { get; set; }
 
-    [JsonPropertyName("model")]
+    [JsonProperty("model")]
     public string? Model { get; set; }
 
-    [JsonPropertyName("motExpiryDate")]
+    [JsonProperty("motExpiryDate")]
     public DateTime? MotExpiryDate { get; set; }
 
-    [JsonPropertyName("odometerReadingMiles")]
+    [JsonProperty("odometerReadingMiles")]
     public int? OdometerReadingMiles { get; set; }
 
-    [JsonPropertyName("owners")]
+    [JsonProperty("owners")]
     public int? Owners { get; set; }
 
-    [JsonPropertyName("ownershipCondition")]
+    [JsonProperty("ownershipCondition")]
     public OwnershipCondition? OwnershipCondition { get; set; }
 
-    [JsonPropertyName("plate")]
+    [JsonProperty("plate")]
     public string? Plate { get; set; }
 
-    [JsonPropertyName("registration")]
+    [JsonProperty("registration")]
     public string? Registration { get; set; }
 
-    [JsonPropertyName("seats")]
+    [JsonProperty("seats")]
     public int? Seats { get; set; }
 
-    [JsonPropertyName("serviceHistory")]
+    [JsonProperty("serviceHistory")]
     public string? ServiceHistory { get; set; }
 
-    [JsonPropertyName("standard")]
+    [JsonProperty("standard")]
     public Standard? Standard { get; set; }
 
-    [JsonPropertyName("topSpeedMPH")]
+    [JsonProperty("topSpeedMPH")]
     public int? TopSpeedMph { get; set; }
 
-    [JsonPropertyName("transmissionType")]
+    [JsonProperty("transmissionType")]
     public string? TransmissionType { get; set; }
 
-    [JsonPropertyName("trim")]
+    [JsonProperty("trim")]
     public string? Trim { get; set; }
 
-    [JsonPropertyName("tyreCondition")]
+    [JsonProperty("tyreCondition")]
     public string? TyreCondition { get; set; }
 
-    [JsonPropertyName("vehicleType")]
+    [JsonProperty("vehicleType")]
     public VehicleType? VehicleType { get; set; }
 
-    [JsonPropertyName("vin")]
+    [JsonProperty("vin")]
     public string? Vin { get; set; }
 
-    [JsonPropertyName("warrantyMonthsOnPurchase")]
+    [JsonProperty("warrantyMonthsOnPurchase")]
     public int? WarrantyMonthsOnPurchase { get; set; }
 
-    [JsonPropertyName("wheelbaseType")]
+    [JsonProperty("wheelbaseType")]
     public string? WheelbaseType { get; set; }
 
-    [JsonPropertyName("widthMM")]
+    [JsonProperty("widthMM")]
     public int? WidthMm { get; set; }
 
-    [JsonPropertyName("yearOfManufacture")]
+    [JsonProperty("yearOfManufacture")]
     public int? YearOfManufacture { get; set; }
 
-    [JsonPropertyName("zeroToOneHundredKMPHSeconds")]
+    [JsonProperty("zeroToOneHundredKMPHSeconds")]
     public double? ZeroToOneHundredKmphSeconds { get; set; }
 
-    [JsonPropertyName("zeroToSixtyMPHSeconds")]
+    [JsonProperty("zeroToSixtyMPHSeconds")]
     public double? ZeroToSixtyMphSeconds { get; set; }
 }

@@ -1,9 +1,9 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models.Images;
 
 public class UploadImageResponse
 {
-    [JsonPropertyName("imageId")]
+    [JsonProperty("imageId")]
     public string ImageId { get; set; } = string.Empty;
 }

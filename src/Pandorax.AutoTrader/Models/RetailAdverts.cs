@@ -1,58 +1,58 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Models;
 public class RetailAdverts
 {
-    [JsonPropertyName("adminFee")]
+    [JsonProperty("adminFee")]
     public Price AdminFee { get; set; } = null!;
 
-    [JsonPropertyName("advertiserAdvert")]
+    [JsonProperty("advertiserAdvert")]
     public Advert AdvertiserAdvert { get; set; } = null!;
 
-    [JsonPropertyName("attentionGrabber")]
+    [JsonProperty("attentionGrabber")]
     public string? AttentionGrabber { get; set; }
 
-    [JsonPropertyName("autotraderAdvert")]
+    [JsonProperty("autotraderAdvert")]
     public Advert AutotraderAdvert { get; set; } = null!;
 
-    [JsonPropertyName("description")]
+    [JsonProperty("description")]
     public string? Description { get; set; }
 
-    [JsonPropertyName("description2")]
+    [JsonProperty("description2")]
     public string? Description2 { get; set; }
 
-    [JsonPropertyName("displayOptions")]
+    [JsonProperty("displayOptions")]
     public DisplayOptions DisplayOptions { get; set; } = null!;
 
-    [JsonPropertyName("exportAdvert")]
+    [JsonProperty("exportAdvert")]
     public Advert ExportAdvert { get; set; } = null!;
 
-    [JsonPropertyName("locatorAdvert")]
+    [JsonProperty("locatorAdvert")]
     public Advert LocatorAdvert { get; set; } = null!;
 
-    [JsonPropertyName("manufacturerRRP")]
+    [JsonProperty("manufacturerRRP")]
     public Price ManufacturerRrp { get; set; } = null!;
 
-    [JsonPropertyName("price")]
+    [JsonProperty("price")]
     public Price Price { get; set; } = null!;
 
-    [JsonPropertyName("priceIndicatorRating")]
+    [JsonProperty("priceIndicatorRating")]
     public PriceIndicatorRating? PriceIndicatorRating { get; set; }
 
-    [JsonPropertyName("profileAdvert")]
+    [JsonProperty("profileAdvert")]
     public Advert ProfileAdvert { get; set; } = null!;
 
-    [JsonPropertyName("suppliedPrice")]
+    [JsonProperty("suppliedPrice")]
     public Price SuppliedPrice { get; set; } = null!;
 
-    [JsonPropertyName("totalPrice")]
+    [JsonProperty("totalPrice")]
     public Price TotalPrice { get; set; } = null!;
 
-    [JsonPropertyName("vatExcluded")]
+    [JsonProperty("vatExcluded")]
     public bool? VatExcluded { get; set; }
 
-    [JsonPropertyName("vatStatus")]
+    [JsonProperty("vatStatus")]
     [JsonConverter(typeof(VatStatusConverter))]
     public VatStatus? VatStatus { get; set; }
 }

@@ -1,13 +1,13 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Converters;
+
 internal class LifecycleStateConverter : JsonConverter<LifecycleState>
 {
-    public override LifecycleState Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override LifecycleState ReadJson(JsonReader reader, Type objectType, LifecycleState existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        return reader.GetString() switch
+        return (string?)reader.Value switch
         {
             "DELETED" => LifecycleState.Deleted,
             "DUE_IN" => LifecycleState.DueIn,
@@ -18,9 +18,9 @@ internal class LifecycleStateConverter : JsonConverter<LifecycleState>
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, LifecycleState value, JsonSerializerOptions options)
+    public override void WriteJson(JsonWriter writer, LifecycleState value, JsonSerializer serializer)
     {
-        writer.WriteStringValue(value switch
+        writer.WriteValue(value switch
         {
             LifecycleState.Deleted => "DELETED",
             LifecycleState.Forecourt => "FORECOURT",

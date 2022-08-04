@@ -1,38 +1,38 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 public class Adverts
 {
-    [JsonPropertyName("forecourtPrice")]
+    [JsonProperty("forecourtPrice")]
     public Price ForecourtPrice { get; set; } = null!;
 
-    [JsonPropertyName("manufacturerApproved")]
+    [JsonProperty("manufacturerApproved")]
     public bool? ManufacturerApproved { get; set; }
 
-    [JsonPropertyName("preparationCosts")]
+    [JsonProperty("preparationCosts")]
     public Price PreparationCosts { get; set; } = null!;
 
-    [JsonPropertyName("priceOnApplication")]
+    [JsonProperty("priceOnApplication")]
     public bool? PriceOnApplication { get; set; }
 
-    [JsonPropertyName("purchasePrice")]
+    [JsonProperty("purchasePrice")]
     public Price PurchasePrice { get; set; } = null!;
 
-    [JsonPropertyName("reservationStatus")]
+    [JsonProperty("reservationStatus")]
     public string? ReservationStatus { get; set; }
 
-    [JsonPropertyName("retailAdverts")]
+    [JsonProperty("retailAdverts")]
     public RetailAdverts RetailAdverts { get; set; } = null!;
 
-    [JsonPropertyName("soldDate")]
+    [JsonProperty("soldDate")]
     public DateTime? SoldDate { get; set; }
 
-    [JsonPropertyName("stockInDate")]
+    [JsonProperty("stockInDate")]
     public DateTime? StockInDate { get; set; }
 
-    [JsonPropertyName("stockInValue")]
+    [JsonProperty("stockInValue")]
     public Price StockInValue { get; set; } = null!;
 
-    [JsonPropertyName("twelveMonthsMot")]
+    [JsonProperty("twelveMonthsMot")]
     public bool? TwelveMonthsMot { get; set; }
 }

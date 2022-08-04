@@ -1,13 +1,13 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class StockListResult
 {
-    [JsonPropertyName("results")]
+    [JsonProperty("results")]
     public List<AutoTraderVehicleData> Results { get; set; } = new();
 
 
-    [JsonPropertyName("totalResults")]
+    [JsonProperty("totalResults")]
     public long TotalResults { get; set; }
 }

@@ -1,45 +1,45 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models.Vehicles;
 
 public class Oem
 {
-    [JsonPropertyName("make")]
+    [JsonProperty("make")]
     public string? Make { get; set; }
 
-    [JsonPropertyName("model")]
+    [JsonProperty("model")]
     public string? Model { get; set; }
 
-    [JsonPropertyName("derivative")]
+    [JsonProperty("derivative")]
     public string? Derivative { get; set; }
 
-    [JsonPropertyName("bodyType")]
+    [JsonProperty("bodyType")]
     public string? BodyType { get; set; }
 
-    [JsonPropertyName("transmissionType")]
+    [JsonProperty("transmissionType")]
     public string? TransmissionType { get; set; }
 
-    [JsonPropertyName("drivetrain")]
+    [JsonProperty("drivetrain")]
     public string? Drivetrain { get; set; }
 
-    [JsonPropertyName("wheelbaseType")]
+    [JsonProperty("wheelbaseType")]
     public string? WheelbaseType { get; set; }
 
-    [JsonPropertyName("roofHeightType")]
+    [JsonProperty("roofHeightType")]
     public string? RoofHeightType { get; set; }
 
-    [JsonPropertyName("engineType")]
+    [JsonProperty("engineType")]
     public string? EngineType { get; set; }
 
-    [JsonPropertyName("engineTechnology")]
+    [JsonProperty("engineTechnology")]
     public string? EngineTechnology { get; set; }
 
-    [JsonPropertyName("engineMarketing")]
+    [JsonProperty("engineMarketing")]
     public string? EngineMarketing { get; set; }
 
-    [JsonPropertyName("editionDescription")]
+    [JsonProperty("editionDescription")]
     public string? EditionDescription { get; set; }
 
-    [JsonPropertyName("colour")]
+    [JsonProperty("colour")]
     public string? Colour { get; set; }
 }

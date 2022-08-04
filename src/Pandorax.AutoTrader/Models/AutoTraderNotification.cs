@@ -1,24 +1,24 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class AutoTraderNotification
 {
-    [JsonPropertyName("clientId")]
+    [JsonProperty("clientId")]
     public string? ClientId { get; set; }
 
-    [JsonPropertyName("data")]
+    [JsonProperty("data")]
     public AutoTraderVehicleData Data { get; set; } = null!;
 
-    [JsonPropertyName("id")]
+    [JsonProperty("id")]
     public string Id { get; set; } = null!;
 
-    [JsonPropertyName("stockEventSource")]
+    [JsonProperty("stockEventSource")]
     public StockEventSource? StockEventSource { get; set; }
 
-    [JsonPropertyName("time")]
+    [JsonProperty("time")]
     public DateTimeOffset Time { get; set; }
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; } = null!;
 }

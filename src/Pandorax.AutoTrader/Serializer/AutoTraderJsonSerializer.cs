@@ -1,13 +1,14 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Converters;
+using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Serializer;
 
 public class AutoTraderJsonSerializer
 {
-    public static readonly JsonSerializerOptions Options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+    public static readonly JsonSerializerSettings Settings = new()
     {
+        ContractResolver = new AutoTraderContractResolver(),
         Converters =
         {
             new DateOnlyConverter(),
@@ -20,16 +21,13 @@ public class AutoTraderJsonSerializer
         },
     };
 
-    /// <summary>
-    /// An instance of the <see cref="JsonSerializerOptions"/> for use with the AutoTrader API which does not write default values.
-    /// </summary>
-    public static readonly JsonSerializerOptions OptionsNoWriteNull = new JsonSerializerOptions(Options)
-    {
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-    };
-
     public static TValue? Deserialize<TValue>(string json)
     {
-        return JsonSerializer.Deserialize<TValue>(json, Options);
+        return JsonConvert.DeserializeObject<TValue>(json, Settings);
+    }
+
+    internal static string Serialize<TValue>(TValue model)
+    {
+        return JsonConvert.SerializeObject(model, Settings);
     }
 }

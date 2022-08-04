@@ -1,8 +1,7 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
-[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PriceIndicatorRating
 {
     Fair,

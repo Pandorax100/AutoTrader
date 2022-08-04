@@ -1,9 +1,9 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models.VehicleCheck;
 
 public class KeeperChange
 {
-    [JsonPropertyName("dateOfLastKeeper")]
+    [JsonProperty("dateOfLastKeeper")]
     public DateOnly DateOfLastKeeper { get; set; }
 }

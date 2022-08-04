@@ -1,29 +1,29 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Models.MotTests;
 
 public class MotTest
 {
-    [JsonPropertyName("completedDate")]
+    [JsonProperty("completedDate")]
     public DateTime CompletedDate { get; set; }
 
-    [JsonPropertyName("expiryDate")]
+    [JsonProperty("expiryDate")]
     [JsonConverter(typeof(DateOnlyConverter))]
     public DateOnly? ExpiryDate { get; set; }
 
-    [JsonPropertyName("testResult")]
+    [JsonProperty("testResult")]
     public string TestResult { get; set; } = string.Empty;
 
-    [JsonPropertyName("odometerValue")]
+    [JsonProperty("odometerValue")]
     public int OdometerValue { get; set; }
 
-    [JsonPropertyName("odometerUnit")]
+    [JsonProperty("odometerUnit")]
     public string OdometerUnit { get; set; } = string.Empty;
 
-    [JsonPropertyName("motTestNumber")]
+    [JsonProperty("motTestNumber")]
     public string MotTestNumber { get; set; } = string.Empty;
 
-    [JsonPropertyName("rfrAndComments")]
+    [JsonProperty("rfrAndComments")]
     public List<MotComment> Comments { get; set; } = new();
 }

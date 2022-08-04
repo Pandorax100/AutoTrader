@@ -1,42 +1,42 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class Check
 {
-    [JsonPropertyName("colourChanged")]
+    [JsonProperty("colourChanged")]
     public bool? ColourChanged { get; set; }
 
-    [JsonPropertyName("exported")]
+    [JsonProperty("exported")]
     public bool? Exported { get; set; }
 
-    [JsonPropertyName("highRisk")]
+    [JsonProperty("highRisk")]
     public bool? HighRisk { get; set; }
 
-    [JsonPropertyName("imported")]
+    [JsonProperty("imported")]
     public bool? Imported { get; set; }
 
-    [JsonPropertyName("insuranceWriteoffCategory")]
+    [JsonProperty("insuranceWriteoffCategory")]
     public Insurance? InsuranceWriteoffCategory { get; set; }
 
-    [JsonPropertyName("mileageDiscrepancy")]
+    [JsonProperty("mileageDiscrepancy")]
     public bool? MileageDiscrepancy { get; set; }
 
-    [JsonPropertyName("previousOwners")]
+    [JsonProperty("previousOwners")]
     public int? PreviousOwners { get; set; }
 
-    [JsonPropertyName("privateFinance")]
+    [JsonProperty("privateFinance")]
     public bool? PrivateFinance { get; set; }
 
-    [JsonPropertyName("registrationChanged")]
+    [JsonProperty("registrationChanged")]
     public bool? RegistrationChanged { get; set; }
 
-    [JsonPropertyName("scrapped")]
+    [JsonProperty("scrapped")]
     public bool? Scrapped { get; set; }
 
-    [JsonPropertyName("stolen")]
+    [JsonProperty("stolen")]
     public bool? Stolen { get; set; }
 
-    [JsonPropertyName("tradeFinance")]
+    [JsonProperty("tradeFinance")]
     public bool? TradeFinance { get; set; }
 }

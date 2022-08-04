@@ -1,27 +1,27 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models.Vehicles;
 
 public class Feature
 {
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; } = string.Empty;
 
-    [JsonPropertyName("genericName")]
+    [JsonProperty("genericName")]
     public string GenericName { get; set; } = string.Empty;
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; } = string.Empty;
 
-    [JsonPropertyName("category")]
+    [JsonProperty("category")]
     public string Category { get; set; } = string.Empty;
 
-    [JsonPropertyName("basicPrice")]
+    [JsonProperty("basicPrice")]
     public decimal? BasicPrice { get; set; }
 
-    [JsonPropertyName("vatPrice")]
+    [JsonProperty("vatPrice")]
     public decimal? VatPrice { get; set; }
 
-    [JsonPropertyName("factoryFitted")]
+    [JsonProperty("factoryFitted")]
     public bool? FactoryFitted { get; set; }
 }

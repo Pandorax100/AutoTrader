@@ -1,12 +1,12 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class Media
 {
-    [JsonPropertyName("images")]
+    [JsonProperty("images")]
     public List<Image> Images { get; set; } = null!;
 
-    [JsonPropertyName("video")]
+    [JsonProperty("video")]
     public Video Video { get; set; } = null!;
 }

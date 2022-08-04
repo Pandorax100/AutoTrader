@@ -1,9 +1,9 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models.VehicleCheck;
 
 public class V5C
 {
-    [JsonPropertyName("issuedDate")]
+    [JsonProperty("issuedDate")]
     public DateOnly IssuedDate { get; set; }
 }

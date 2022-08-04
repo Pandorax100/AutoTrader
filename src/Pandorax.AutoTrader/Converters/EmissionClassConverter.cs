@@ -1,14 +1,13 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Converters;
 
 internal class EmissionClassConverter : JsonConverter<EmissionClass?>
 {
-    public override EmissionClass? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override EmissionClass? ReadJson(JsonReader reader, Type objectType, EmissionClass? existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        return reader.GetString() switch
+        return (string?)reader.Value switch
         {
             "Euro 1" => EmissionClass.Euro1,
             "Euro 2" => EmissionClass.Euro2,
@@ -20,15 +19,15 @@ internal class EmissionClassConverter : JsonConverter<EmissionClass?>
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, EmissionClass? value, JsonSerializerOptions options)
+    public override void WriteJson(JsonWriter writer, EmissionClass? value, JsonSerializer serializer)
     {
         if (value is null)
         {
-            writer.WriteNullValue();
+            writer.WriteNull();
         }
         else
         {
-            writer.WriteStringValue(value switch
+            writer.WriteValue(value switch
             {
                 EmissionClass.Euro1 => "Euro 1",
                 EmissionClass.Euro2 => "Euro 2",
@@ -39,10 +38,5 @@ internal class EmissionClassConverter : JsonConverter<EmissionClass?>
                 _ => throw new ArgumentOutOfRangeException(nameof(value)),
             });
         }
-    }
-
-    public override void WriteAsPropertyName(Utf8JsonWriter writer, EmissionClass? value, JsonSerializerOptions options)
-    {
-        writer.WriteNullValue();
     }
 }

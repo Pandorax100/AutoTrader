@@ -1,11 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Converters
 {
@@ -14,12 +8,17 @@ namespace Pandorax.AutoTrader.Converters
     /// </summary>
     internal class AccessTokenDateConverter : JsonConverter<DateTimeOffset>
     {
-        public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override DateTimeOffset ReadJson(
+            JsonReader reader,
+            Type objectType,
+            DateTimeOffset existingValue,
+            bool hasExistingValue,
+            JsonSerializer serializer)
         {
-            var value = reader.GetString();
+            var value = serializer.Deserialize<string>(reader);
 
             var dateTime = DateTimeOffset.ParseExact(
-                value!,
+                (string?)reader.Value!,
                 @"ddd MMM dd HH:mm:ss \U\T\C yyyy",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.AssumeUniversal);
@@ -27,7 +26,7 @@ namespace Pandorax.AutoTrader.Converters
             return dateTime;
         }
 
-        public override void Write(Utf8JsonWriter writer, DateTimeOffset value, JsonSerializerOptions options)
+        public override void WriteJson(JsonWriter writer, DateTimeOffset value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
         }

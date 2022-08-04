@@ -1,15 +1,15 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models.MotTests;
 
 public class MotComment
 {
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public string Type { get; set; } = string.Empty;
 
-    [JsonPropertyName("text")]
+    [JsonProperty("text")]
     public string Text { get; set; } = string.Empty;
 
-    [JsonPropertyName("dangerours")]
+    [JsonProperty("dangerours")]
     public bool Dangerous { get; set; }
 }

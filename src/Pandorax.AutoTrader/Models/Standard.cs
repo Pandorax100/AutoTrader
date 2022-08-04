@@ -1,36 +1,36 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class Standard
 {
-    [JsonPropertyName("bodyType")]
+    [JsonProperty("bodyType")]
     public string BodyType { get; set; } = null!;
 
-    [JsonPropertyName("colour")]
+    [JsonProperty("colour")]
     public string? Colour { get; set; }
 
-    [JsonPropertyName("derivative")]
+    [JsonProperty("derivative")]
     public string? Derivative { get; set; }
 
-    [JsonPropertyName("drivetrain")]
+    [JsonProperty("drivetrain")]
     public string? Drivetrain { get; set; }
 
-    [JsonPropertyName("fuelType")]
+    [JsonProperty("fuelType")]
     public string? FuelType { get; set; }
 
-    [JsonPropertyName("generation")]
+    [JsonProperty("generation")]
     public string? Generation { get; set; }
 
-    [JsonPropertyName("make")]
+    [JsonProperty("make")]
     public string Make { get; set; } = null!;
 
-    [JsonPropertyName("model")]
+    [JsonProperty("model")]
     public string? Model { get; set; }
 
-    [JsonPropertyName("transmissionType")]
+    [JsonProperty("transmissionType")]
     public string? TransmissionType { get; set; }
 
-    [JsonPropertyName("trim")]
+    [JsonProperty("trim")]
     public string? Trim { get; set; }
 }

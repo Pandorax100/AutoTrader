@@ -1,13 +1,13 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Converters;
+
 internal class StatusConverter : JsonConverter<Status>
 {
-    public override Status Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override Status ReadJson(JsonReader reader, Type objectType, Status existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        return reader.GetString() switch
+        return (string?)reader.Value switch
         {
             "CAPPED" => Status.Capped,
             "NOT_PUBLISHED" => Status.NotPublished,
@@ -17,9 +17,9 @@ internal class StatusConverter : JsonConverter<Status>
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, Status value, JsonSerializerOptions options)
+    public override void WriteJson(JsonWriter writer, Status value, JsonSerializer serializer)
     {
-        writer.WriteStringValue(value switch
+        writer.WriteValue(value switch
         {
             Status.Capped => "CAPPED",
             Status.NotPublished => "NOT_PUBLISHED",

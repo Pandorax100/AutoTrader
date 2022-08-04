@@ -1,6 +1,3 @@
-using System.Text.Json.Serialization;
-using Pandorax.AutoTrader.Converters;
-
 namespace Pandorax.AutoTrader.Models;
 
 public enum EmissionClass

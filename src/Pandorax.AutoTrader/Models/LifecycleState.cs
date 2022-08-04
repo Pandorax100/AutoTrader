@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Models;

@@ -1,38 +1,30 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class AutoTraderVehicleData
 {
-    [JsonPropertyName("advertiser")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("advertiser")]
     public Advertiser? Advertiser { get; set; }
 
-    [JsonPropertyName("adverts")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("adverts")]
     public Adverts? Adverts { get; set; }
 
-    [JsonPropertyName("check")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("check")]
     public Check? Check { get; set; }
 
-    [JsonPropertyName("features")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("features")]
     public List<Feature> Features { get; set; } = new();
 
-    [JsonPropertyName("media")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("media")]
     public Media? Media { get; set; }
 
-    [JsonPropertyName("metadata")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("metadata")]
     public Metadata? Metadata { get; set; }
 
-    [JsonPropertyName("vehicle")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("vehicle")]
     public Vehicle? Vehicle { get; set; }
 
-    [JsonPropertyName("messages")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonProperty("messages")]
     public List<AutoTraderMessage>? Messages { get; set; }
 }

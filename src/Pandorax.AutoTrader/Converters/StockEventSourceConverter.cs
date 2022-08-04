@@ -1,14 +1,13 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Converters;
 
 internal class StockEventSourceConverter : JsonConverter<StockEventSource>
 {
-    public override StockEventSource Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override StockEventSource ReadJson(JsonReader reader, Type objectType, StockEventSource existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        return reader.GetString() switch
+        return (string?)reader.Value switch
         {
             "FEED" => StockEventSource.Feed,
             "OTHER" => StockEventSource.Other,
@@ -18,9 +17,9 @@ internal class StockEventSourceConverter : JsonConverter<StockEventSource>
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, StockEventSource value, JsonSerializerOptions options)
+    public override void WriteJson(JsonWriter writer, StockEventSource value, JsonSerializer serializer)
     {
-        writer.WriteStringValue(value switch
+        writer.WriteValue(value switch
         {
             StockEventSource.Feed => "FEED",
             StockEventSource.Other => "OTHER",

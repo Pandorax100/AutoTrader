@@ -1,11 +1,11 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 public class Feature
 {
-    [JsonPropertyName("name")]
+    [JsonProperty("name")]
     public string Name { get; set; } = null!;
 
-    [JsonPropertyName("type")]
+    [JsonProperty("type")]
     public FeatureType Type { get; set; }
 }

@@ -1,30 +1,30 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models.VehicleCheck;
 
 public class BasicVehicleCheck
 {
-    [JsonPropertyName("exported")]
+    [JsonProperty("exported")]
     public bool Exported { get; set; }
 
-    [JsonPropertyName("imported")]
+    [JsonProperty("imported")]
     public bool Imported { get; set; }
 
-    [JsonPropertyName("insuranceWriteoffCategory")]
+    [JsonProperty("insuranceWriteoffCategory")]
     public string? InsuranceWriteoffCategory { get; set; }
 
-    [JsonPropertyName("keeperChanges")]
+    [JsonProperty("keeperChanges")]
     public List<KeeperChange> KeeperChanges { get; set; } = new();
 
-    [JsonPropertyName("previousOwners")]
+    [JsonProperty("previousOwners")]
     public int PreviousOwners { get; set; }
 
-    [JsonPropertyName("scrapped")]
+    [JsonProperty("scrapped")]
     public bool Scrapped { get; set; }
 
-    [JsonPropertyName("stolen")]
+    [JsonProperty("stolen")]
     public bool Stolen { get; set; }
 
-    [JsonPropertyName("v5cs")]
+    [JsonProperty("v5cs")]
     public List<V5C> V5Cs { get; set; } = new();
 }

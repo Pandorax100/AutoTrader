@@ -1,6 +1,6 @@
-using System.Text.Json;
 using Microsoft.Extensions.Options;
 using Pandorax.AutoTrader.Options;
+using Pandorax.AutoTrader.Serializer;
 
 namespace Pandorax.AutoTrader.Authorization
 {
@@ -35,7 +35,7 @@ namespace Pandorax.AutoTrader.Authorization
 
                 string json = await response.Content.ReadAsStringAsync();
 
-                _accessToken = JsonSerializer.Deserialize<AccessTokenJsonResponse>(json)!;
+                _accessToken = AutoTraderJsonSerializer.Deserialize<AccessTokenJsonResponse>(json)!;
             }
 
             return _accessToken.AccessToken;

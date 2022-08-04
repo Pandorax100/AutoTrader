@@ -1,9 +1,9 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
 public class Advertiser
 {
-    [JsonPropertyName("advertiserId")]
+    [JsonProperty("advertiserId")]
     public string? AdvertiserId { get; set; }
 }

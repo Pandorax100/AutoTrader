@@ -1,11 +1,11 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 public class Image
 {
-    [JsonPropertyName("href")]
+    [JsonProperty("href")]
     public string Href { get; set; } = null!;
 
-    [JsonPropertyName("imageId")]
+    [JsonProperty("imageId")]
     public string ImageId { get; set; } = null!;
 }

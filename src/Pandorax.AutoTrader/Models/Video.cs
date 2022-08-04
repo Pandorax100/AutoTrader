@@ -1,8 +1,8 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 public class Video
 {
-    [JsonPropertyName("href")]
+    [JsonProperty("href")]
     public Uri? Href { get; set; }
 }

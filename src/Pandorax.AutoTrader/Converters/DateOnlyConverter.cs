@@ -1,13 +1,12 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Converters;
 
 internal class DateOnlyConverter : JsonConverter<DateOnly>
 {
-    public override DateOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override DateOnly ReadJson(JsonReader reader, Type objectType, DateOnly existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        string? value = reader.GetString();
+        string? value = (string?)reader.Value;
 
         if (value is null)
         {
@@ -17,7 +16,7 @@ internal class DateOnlyConverter : JsonConverter<DateOnly>
         return DateOnly.Parse(value);
     }
 
-    public override void Write(Utf8JsonWriter writer, DateOnly value, JsonSerializerOptions options)
+    public override void WriteJson(JsonWriter writer, DateOnly value, JsonSerializer serializer)
     {
         throw new NotImplementedException();
     }

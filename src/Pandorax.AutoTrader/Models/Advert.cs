@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
 
@@ -13,6 +13,6 @@ public class Advert
         Status = status;
     }
 
-    [JsonPropertyName("status")]
+    [JsonProperty("status")]
     public Status Status { get; set; }
 }

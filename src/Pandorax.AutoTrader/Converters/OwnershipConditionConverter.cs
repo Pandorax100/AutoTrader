@@ -1,13 +1,13 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Converters;
+
 internal class OwnershipConditionConverter : JsonConverter<OwnershipCondition>
 {
-    public override OwnershipCondition Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override OwnershipCondition ReadJson(JsonReader reader, Type objectType, OwnershipCondition existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        return reader.GetString() switch
+        return (string?)reader.Value switch
         {
             "New" => OwnershipCondition.New,
             "Used" => OwnershipCondition.Used,
@@ -15,9 +15,9 @@ internal class OwnershipConditionConverter : JsonConverter<OwnershipCondition>
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, OwnershipCondition value, JsonSerializerOptions options)
+    public override void WriteJson(JsonWriter writer, OwnershipCondition value, JsonSerializer serializer)
     {
-        writer.WriteStringValue(value switch
+        writer.WriteValue(value switch
         {
             OwnershipCondition.New => "New",
             OwnershipCondition.Used => "Used",

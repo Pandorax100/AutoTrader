@@ -1,14 +1,13 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Converters;
 
 internal class VatStatusConverter : JsonConverter<VatStatus?>
 {
-    public override VatStatus? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    public override VatStatus? ReadJson(JsonReader reader, Type objectType, VatStatus? existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
-        return reader.GetString() switch
+        return (string?)reader.Value switch
         {
             "Ex VAT" => VatStatus.ExVat,
             "Inc VAT" => VatStatus.IncVat,
@@ -17,9 +16,9 @@ internal class VatStatusConverter : JsonConverter<VatStatus?>
         };
     }
 
-    public override void Write(Utf8JsonWriter writer, VatStatus? value, JsonSerializerOptions options)
+    public override void WriteJson(JsonWriter writer, VatStatus? value, JsonSerializer serializer)
     {
-        writer.WriteStringValue(value switch
+        writer.WriteValue(value switch
         {
             VatStatus.ExVat => "Ex VAT",
             VatStatus.IncVat => "Inc VAT",

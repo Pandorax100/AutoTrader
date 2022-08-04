@@ -1,32 +1,33 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Models;
+
 public class Metadata
 {
-    [JsonPropertyName("dateOnForecourt")]
+    [JsonProperty("dateOnForecourt")]
     public DateTime DateOnForecourt { get; set; }
 
-    [JsonPropertyName("externalStockId")]
+    [JsonProperty("externalStockId")]
     public string ExternalStockId { get; set; } = null!;
 
-    [JsonPropertyName("externalStockReference")]
+    [JsonProperty("externalStockReference")]
     public string? ExternalStockReference { get; set; }
 
-    [JsonPropertyName("lastUpdated")]
+    [JsonProperty("lastUpdated")]
     public DateTime LastUpdated { get; set; }
 
-    [JsonPropertyName("lastUpdatedByAdvertiser")]
+    [JsonProperty("lastUpdatedByAdvertiser")]
     public DateTime LastUpdatedByAdvertiser { get; set; }
 
-    [JsonPropertyName("lifecycleState")]
+    [JsonProperty("lifecycleState")]
     public LifecycleState LifecycleState { get; set; }
 
-    [JsonPropertyName("searchId")]
+    [JsonProperty("searchId")]
     public string SearchId { get; set; } = null!;
 
-    [JsonPropertyName("stockId")]
+    [JsonProperty("stockId")]
     public string StockId { get; set; } = null!;
 
-    [JsonPropertyName("versionNumber")]
+    [JsonProperty("versionNumber")]
     public int VersionNumber { get; set; }
 }

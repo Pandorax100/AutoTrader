@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Authorization
@@ -8,10 +8,10 @@ namespace Pandorax.AutoTrader.Authorization
     /// </summary>
     internal record AccessTokenJsonResponse
     {
-        [JsonPropertyName("access_token")]
+        [JsonProperty("access_token")]
         public string AccessToken { get; init; } = null!;
 
-        [JsonPropertyName("expires")]
+        [JsonProperty("expires")]
         [JsonConverter(typeof(AccessTokenDateConverter))]
         public DateTimeOffset Expires { get; init; }
     }
