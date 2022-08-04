@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using Pandorax.AutoTrader.Api.Stock.Common;
-using Pandorax.AutoTrader.Api.Stock.Read;
 
 namespace Pandorax.AutoTrader.Api.Stock.Read;
 

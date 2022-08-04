@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using Pandorax.AutoTrader.Converters;
-using Pandorax.AutoTrader.Models;
 
 namespace Pandorax.AutoTrader.Serializer;
 
