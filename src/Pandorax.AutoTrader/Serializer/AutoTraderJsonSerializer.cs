@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Pandorax.AutoTrader.Converters;
 
 namespace Pandorax.AutoTrader.Serializer;
@@ -17,6 +18,7 @@ public class AutoTraderJsonSerializer
             new StatusConverter(),
             new StockEventSourceConverter(),
             new VatStatusConverter(),
+            new StringEnumConverter(),
         },
     };
 

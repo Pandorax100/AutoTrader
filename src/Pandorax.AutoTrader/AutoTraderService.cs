@@ -67,7 +67,7 @@ namespace Pandorax.AutoTrader
             return vehicles;
         }
 
-        public async Task<UpdateStockResponse> CreateStockAsync(int advertiserId, AutoTraderVehicleData vehicle)
+        public async Task<UpdateStockResponse> CreateStockAsync(int advertiserId, AutoTraderVehicleUpdateRequest vehicle)
         {
             ArgumentNullException.ThrowIfNull(vehicle);
 
