@@ -5,7 +5,7 @@ using Pandorax.AutoTrader.Api.Stock.Common;
 
 namespace Pandorax.AutoTrader.Utils;
 
-internal static class Endpoints
+public static class Endpoints
 {
     public static string SearchEndpoint(StockSearchParameters stockSearchParameters)
     {
@@ -93,5 +93,43 @@ internal static class Endpoints
         }
 
         return query;
+    }
+
+    public static class Taxonomy
+    {
+        public static string VehicleTypes()
+        {
+            return "/service/stock-management/taxonomy/vehicleTypes";
+        }
+
+        public static string VehicleMakes(string vehicleType)
+        {
+            return $"/service/stock-management/taxonomy/makes?vehicleType={vehicleType}";
+        }
+
+        public static string VehicleModels(string makeId)
+        {
+            return $"/service/stock-management/taxonomy/models?makeId={makeId}";
+        }
+
+        public static string VehicleGenerations(string modelId)
+        {
+            return $"/service/stock-management/taxonomy/generations?modelId={modelId}";
+        }
+
+        public static string VehicleDerivatives(string generationId)
+        {
+            return $"/service/stock-management/taxonomy/derivatives?generationId={generationId}";
+        }
+
+        public static string TechnicalData(string derivativeId)
+        {
+            return $"/service/stock-management/taxonomy/derivatives/{derivativeId}";
+        }
+
+        public static string VehicleFeatures(string derivativeId, DateOnly effectiveDate)
+        {
+            return $"/service/stock-management/taxonomy/features?derivativeId={derivativeId}&effectiveDate={effectiveDate:yyyy-MM-dd}";
+        }
     }
 }
