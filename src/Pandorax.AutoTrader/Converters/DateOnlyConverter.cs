@@ -2,21 +2,21 @@ using Newtonsoft.Json;
 
 namespace Pandorax.AutoTrader.Converters;
 
-internal class DateOnlyConverter : JsonConverter<DateOnly>
+internal class DateOnlyConverter : JsonConverter
 {
-    public override DateOnly ReadJson(JsonReader reader, Type objectType, DateOnly existingValue, bool hasExistingValue, JsonSerializer serializer)
+    public override bool CanConvert(Type objectType)
+    {
+        return objectType == typeof(DateOnly) || objectType == typeof(DateOnly?);
+    }
+
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
     {
         string? value = (string?)reader.Value;
 
-        if (value is null)
-        {
-            throw new InvalidOperationException();
-        }
-
-        return DateOnly.Parse(value);
+        return value is null ? null : DateOnly.Parse(value);
     }
 
-    public override void WriteJson(JsonWriter writer, DateOnly value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         throw new NotImplementedException();
     }
