@@ -5,7 +5,7 @@ using Pandorax.AutoTrader.Api.Stock.Read;
 using Pandorax.AutoTrader.Api.Stock.Update;
 using Pandorax.AutoTrader.Api.Vehicles;
 
-namespace Pandorax.AutoTrader;
+namespace Pandorax.AutoTrader.Services;
 
 public interface IAutoTraderService
 {

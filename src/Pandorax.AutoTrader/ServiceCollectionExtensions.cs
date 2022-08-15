@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Pandorax.AutoTrader.Authorization;
 using Pandorax.AutoTrader.Constants;
 using Pandorax.AutoTrader.Options;
+using Pandorax.AutoTrader.Services;
 
 namespace Pandorax.AutoTrader;
 

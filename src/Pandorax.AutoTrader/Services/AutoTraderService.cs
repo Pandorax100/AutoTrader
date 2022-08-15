@@ -10,7 +10,7 @@ using Pandorax.AutoTrader.Api.Vehicles;
 using Pandorax.AutoTrader.Serializer;
 using Pandorax.AutoTrader.Utils;
 
-namespace Pandorax.AutoTrader
+namespace Pandorax.AutoTrader.Services
 {
     internal class AutoTraderService : IAutoTraderService
     {
