@@ -47,15 +47,15 @@ public class VehicleTechnicalData
 
     public string? RoofHeightType { get; set; }
 
-    public int Seats { get; set; }
+    public int? Seats { get; set; }
 
-    public int Doors { get; set; }
+    public int? Doors { get; set; }
 
-    public int Valves { get; set; }
+    public int? Valves { get; set; }
 
-    public int Gears { get; set; }
+    public int? Gears { get; set; }
 
-    public int Cylinders { get; set; }
+    public int? Cylinders { get; set; }
 
     public string? CylinderArrangement { get; set; }
 
@@ -63,7 +63,7 @@ public class VehicleTechnicalData
 
     public string? ValveGear { get; set; }
 
-    public int Axles { get; set; }
+    public int? Axles { get; set; }
 
     public string? CountryOfOrigin { get; set; }
 
@@ -81,10 +81,10 @@ public class VehicleTechnicalData
     public double? EngineTorqueLbft { get; set; }
 
     [JsonProperty("co2EmissionGPKM")]
-    public int Co2EmissionGpkm { get; set; }
+    public int? Co2EmissionGpkm { get; set; }
 
     [JsonProperty("topSpeedMPH")]
-    public int TopSpeedMph { get; set; }
+    public int? TopSpeedMph { get; set; }
 
     [JsonProperty("zeroToOneHundredKMPHSeconds")]
     public double? ZeroToOneHundredKmphSeconds { get; set; }
@@ -96,7 +96,7 @@ public class VehicleTechnicalData
     public double BadgeEngineSizeLitres { get; set; }
 
     [JsonProperty("engineCapacityCC")]
-    public int EngineCapacityCC { get; set; }
+    public int? EngineCapacityCC { get; set; }
 
     [JsonProperty("enginePowerBHP")]
     public int? EnginePowerBhp { get; set; }
@@ -108,7 +108,8 @@ public class VehicleTechnicalData
     public EmissionClass? EmissionClass { get; set; }
 
     [JsonProperty("owners")]
-    public int Owners { get; set; }
+    public int? Owners { get; set; }
+
     [JsonProperty("fuelEconomyNEDCCombinedMPG")]
     public double? FuelEconomyNedcCombinedMpg { get; set; }
 
@@ -134,16 +135,16 @@ public class VehicleTechnicalData
     public double? FuelEconomyWltpMediumMpg { get; set; }
 
     [JsonProperty("lengthMM")]
-    public int LengthMm { get; set; }
+    public int? LengthMm { get; set; }
 
     [JsonProperty("heightMM")]
-    public int HeightMM { get; set; }
+    public int? HeightMM { get; set; }
 
     [JsonProperty("widthMM")]
-    public int WidthMm { get; set; }
+    public int? WidthMm { get; set; }
 
     [JsonProperty("wheelbaseMM")]
-    public int WheelbaseMm { get; set; }
+    public int? WheelbaseMm { get; set; }
 
     [JsonProperty("bootSpaceSeatsUpLitres")]
     public double? BootSpaceSeatsUpLitres { get; set; }
@@ -185,10 +186,10 @@ public class VehicleTechnicalData
     public double? GrossTrainWeightKg { get; set; }
 
     [JsonProperty("boreMM")]
-    public int BoreMm { get; set; }
+    public int? BoreMm { get; set; }
 
     [JsonProperty("strokeMM")]
-    public int StrokeMm { get; set; }
+    public int? StrokeMm { get; set; }
 
     [JsonProperty("payloadLengthMM")]
     public int? PayloadLengthMM { get; set; }
