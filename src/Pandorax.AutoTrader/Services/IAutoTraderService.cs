@@ -41,7 +41,6 @@ public interface IAutoTraderService
     Task<UploadImageResponse> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName);
 
     Task<VehicleRoot?> GetVehicleDataAsync(
-        int advertiserId,
         string vehicleRegistration,
         bool includeMots = false,
         bool includeFeatures = false,
