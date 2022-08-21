@@ -6,10 +6,10 @@ namespace Pandorax.AutoTrader.Api.Vehicles;
 public partial class Vehicle
 {
     [JsonProperty("axles")]
-    public int Axles { get; set; }
+    public int? Axles { get; set; }
 
     [JsonProperty("badgeEngineSizeLitres")]
-    public double BadgeEngineSizeLitres { get; set; }
+    public double? BadgeEngineSizeLitres { get; set; }
 
     [JsonProperty("batteryCapacityKWH")]
     public double? BatteryCapacityKwh { get; set; }
@@ -36,13 +36,13 @@ public partial class Vehicle
     public double? BootSpaceSeatsUpLitres { get; set; }
 
     [JsonProperty("boreMM")]
-    public int BoreMm { get; set; }
+    public int? BoreMm { get; set; }
 
     [JsonProperty("cabType")]
     public string? CabType { get; set; }
 
     [JsonProperty("co2EmissionGPKM")]
-    public int Co2EmissionGpkm { get; set; }
+    public int? Co2EmissionGpkm { get; set; }
 
     [JsonProperty("colour")]
     public string? Colour { get; set; }
@@ -63,7 +63,7 @@ public partial class Vehicle
     public string? DerivativeId { get; set; }
 
     [JsonProperty("doors")]
-    public int Doors { get; set; }
+    public int? Doors { get; set; }
 
     [JsonProperty("drivetrain")]
     public string? Drivetrain { get; set; }
@@ -75,7 +75,7 @@ public partial class Vehicle
     public EmissionClass? EmissionClass { get; set; }
 
     [JsonProperty("engineCapacityCC")]
-    public int EngineCapacityCC { get; set; }
+    public int? EngineCapacityCC { get; set; }
 
     [JsonProperty("engineMake")]
     public string? EngineMake { get; set; }
@@ -132,7 +132,7 @@ public partial class Vehicle
     public string? FuelType { get; set; }
 
     [JsonProperty("gears")]
-    public int Gears { get; set; }
+    public int? Gears { get; set; }
 
     [JsonProperty("generation")]
     public string? Generation { get; set; }
@@ -147,7 +147,7 @@ public partial class Vehicle
     public int? GrossVehicleWeightKg { get; set; }
 
     [JsonProperty("heightMM")]
-    public int HeightMM { get; set; }
+    public int? HeightMM { get; set; }
 
     [JsonProperty("insuranceGroup")]
     public string? InsuranceGroup { get; set; }
@@ -156,7 +156,7 @@ public partial class Vehicle
     public string? InsuranceSecurityCode { get; set; }
 
     [JsonProperty("lengthMM")]
-    public int LengthMm { get; set; }
+    public int? LengthMm { get; set; }
 
     [JsonProperty("make")]
     public string? Make { get; set; }
@@ -171,10 +171,10 @@ public partial class Vehicle
     public Oem Oem { get; set; } = new();
 
     [JsonProperty("owners")]
-    public int Owners { get; set; }
+    public int? Owners { get; set; }
 
     [JsonProperty("ownershipCondition")]
-    public OwnershipCondition OwnershipCondition { get; set; }
+    public OwnershipCondition? OwnershipCondition { get; set; }
 
     [JsonProperty("payloadHeightMM")]
     public int? PayloadHeightMM { get; set; }
@@ -201,16 +201,16 @@ public partial class Vehicle
     public string? RoofHeightType { get; set; }
 
     [JsonProperty("seats")]
-    public int Seats { get; set; }
+    public int? Seats { get; set; }
 
     [JsonProperty("sector")]
     public string? Sector { get; set; }
 
     [JsonProperty("startStop")]
-    public bool StartStop { get; set; }
+    public bool? StartStop { get; set; }
 
     [JsonProperty("strokeMM")]
-    public int StrokeMm { get; set; }
+    public int? StrokeMm { get; set; }
 
     [JsonProperty("style")]
     public string? Style { get; set; }
@@ -219,7 +219,7 @@ public partial class Vehicle
     public string? SubStyle { get; set; }
 
     [JsonProperty("topSpeedMPH")]
-    public int TopSpeedMph { get; set; }
+    public int? TopSpeedMph { get; set; }
 
     [JsonProperty("transmissionType")]
     public string? TransmissionType { get; set; }
@@ -231,22 +231,22 @@ public partial class Vehicle
     public string? ValveGear { get; set; }
 
     [JsonProperty("valves")]
-    public int Valves { get; set; }
+    public int? Valves { get; set; }
 
     [JsonProperty("vehicleType")]
-    public VehicleType VehicleType { get; set; }
+    public VehicleType? VehicleType { get; set; }
 
     [JsonProperty("vin")]
     public string? Vin { get; set; }
 
     [JsonProperty("wheelbaseMM")]
-    public int WheelbaseMm { get; set; }
+    public int? WheelbaseMm { get; set; }
 
     [JsonProperty("wheelbaseType")]
     public string? WheelbaseType { get; set; }
 
     [JsonProperty("widthMM")]
-    public int WidthMm { get; set; }
+    public int? WidthMm { get; set; }
 
     [JsonProperty("zeroToOneHundredKMPHSeconds")]
     public double? ZeroToOneHundredKmphSeconds { get; set; }

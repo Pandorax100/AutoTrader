@@ -69,7 +69,7 @@ public class VehicleTechnicalData
 
     public string? DriveType { get; set; }
 
-    public bool StartStop { get; set; }
+    public bool? StartStop { get; set; }
 
     [JsonProperty("enginePowerPS")]
     public int? EnginePowerPs { get; set; }
@@ -93,7 +93,7 @@ public class VehicleTechnicalData
     public double? ZeroToSixtyMphSeconds { get; set; }
 
     [JsonProperty("badgeEngineSizeLitres")]
-    public double BadgeEngineSizeLitres { get; set; }
+    public double? BadgeEngineSizeLitres { get; set; }
 
     [JsonProperty("engineCapacityCC")]
     public int? EngineCapacityCC { get; set; }

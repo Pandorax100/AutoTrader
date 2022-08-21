@@ -17,7 +17,7 @@ public class BasicVehicleCheck
     public List<KeeperChange> KeeperChanges { get; set; } = new();
 
     [JsonProperty("previousOwners")]
-    public int PreviousOwners { get; set; }
+    public int? PreviousOwners { get; set; }
 
     [JsonProperty("scrapped")]
     public bool Scrapped { get; set; }
