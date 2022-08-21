@@ -13,6 +13,8 @@ public class AutoTraderJsonSerializer
         {
             new DateOnlyConverter(),
             new EmissionClassConverter(),
+            new TyreConditionClassConverter(),
+            new ServiceHistoryStatusConverter(),
             new LifecycleStateConverter(),
             new StatusConverter(),
             new StockEventSourceConverter(),
@@ -27,6 +29,8 @@ public class AutoTraderJsonSerializer
         {
             new DateOnlyConverter(),
             new EmissionClassConverter(),
+            new TyreConditionClassConverter(),
+            new ServiceHistoryStatusConverter(),
             new LifecycleStateConverter(),
             new StatusConverter(),
             new StockEventSourceConverter(),

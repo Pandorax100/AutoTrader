@@ -19,7 +19,7 @@ public class Vehicle
     public Optional<int?> Berths { get; set; }
 
     [JsonProperty("bodyCondition")]
-    public Optional<string?> BodyCondition { get; set; }
+    public Optional<Condition?> BodyCondition { get; set; }
 
     [JsonProperty("bodyType")]
     public Optional<string?> BodyType { get; set; }
@@ -106,7 +106,7 @@ public class Vehicle
     public Optional<string?> InteriorColour { get; set; }
 
     [JsonProperty("interiorCondition")]
-    public Optional<string?> InteriorCondition { get; set; }
+    public Optional<Condition?> InteriorCondition { get; set; }
 
     [JsonProperty("lastServiceDate")]
     public Optional<DateTime?> LastServiceDate { get; set; }
@@ -145,7 +145,7 @@ public class Vehicle
     public Optional<int?> Seats { get; set; }
 
     [JsonProperty("serviceHistory")]
-    public Optional<string?> ServiceHistory { get; set; }
+    public Optional<ServiceHistoryStatus?> ServiceHistory { get; set; }
 
     [JsonProperty("topSpeedMPH")]
     public Optional<int?> TopSpeedMph { get; set; }
@@ -157,7 +157,7 @@ public class Vehicle
     public Optional<string?> Trim { get; set; }
 
     [JsonProperty("tyreCondition")]
-    public Optional<string?> TyreCondition { get; set; }
+    public Optional<TyreCondition?> TyreCondition { get; set; }
 
     [JsonProperty("vehicleType")]
     public Optional<VehicleType?> VehicleType { get; set; }

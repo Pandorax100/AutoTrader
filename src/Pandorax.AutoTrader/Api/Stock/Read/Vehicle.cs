@@ -18,7 +18,7 @@ public class Vehicle
     public int? Berths { get; set; }
 
     [JsonProperty("bodyCondition")]
-    public string? BodyCondition { get; set; }
+    public Condition? BodyCondition { get; set; }
 
     [JsonProperty("bodyType")]
     public string? BodyType { get; set; }
@@ -105,7 +105,7 @@ public class Vehicle
     public string? InteriorColour { get; set; }
 
     [JsonProperty("interiorCondition")]
-    public string? InteriorCondition { get; set; }
+    public Condition? InteriorCondition { get; set; }
 
     [JsonProperty("lastServiceDate")]
     public DateTime? LastServiceDate { get; set; }
@@ -144,7 +144,7 @@ public class Vehicle
     public int? Seats { get; set; }
 
     [JsonProperty("serviceHistory")]
-    public string? ServiceHistory { get; set; }
+    public ServiceHistoryStatus? ServiceHistory { get; set; }
 
     [JsonProperty("standard")]
     public Standard? Standard { get; set; }
@@ -159,7 +159,7 @@ public class Vehicle
     public string? Trim { get; set; }
 
     [JsonProperty("tyreCondition")]
-    public string? TyreCondition { get; set; }
+    public TyreCondition? TyreCondition { get; set; }
 
     [JsonProperty("vehicleType")]
     public VehicleType? VehicleType { get; set; }
