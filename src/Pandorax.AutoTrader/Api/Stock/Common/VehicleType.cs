@@ -4,8 +4,11 @@ public enum VehicleType
 {
     Bike,
     Car,
-    Motorhome,
-    Van,
-    Truck,
+    Caravan,
     Crossover,
+    Farm,
+    Motorhome,
+    Plant,
+    Truck,
+    Van,
 }
