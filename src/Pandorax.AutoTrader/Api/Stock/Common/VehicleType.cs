@@ -7,4 +7,5 @@ public enum VehicleType
     Motorhome,
     Van,
     Truck,
+    Crossover,
 }
