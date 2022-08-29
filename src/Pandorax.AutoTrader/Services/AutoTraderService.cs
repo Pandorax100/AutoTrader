@@ -168,6 +168,7 @@ namespace Pandorax.AutoTrader.Services
         }
 
         public async Task<VehicleRoot?> GetVehicleDataAsync(
+            int advertiserId,
             string vehicleRegistration,
             bool includeMots = false,
             bool includeFeatures = false,
@@ -177,8 +178,8 @@ namespace Pandorax.AutoTrader.Services
             ArgumentNullException.ThrowIfNull(vehicleRegistration);
 
             string url = Endpoints.VehicleData(
+                advertiserId,
                 vehicleRegistration,
-                advertiserId: null,
                 includeMots,
                 includeFeatures,
                 includeBasicVehicleCheck,

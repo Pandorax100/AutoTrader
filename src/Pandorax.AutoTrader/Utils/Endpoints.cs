@@ -26,20 +26,16 @@ public static class Endpoints
         => $"/service/stock-management/images?advertiserId={advertiserId}";
 
     public static string VehicleData(
+        int advertiserId,
         string vehicleRegistration,
-        int? advertiserId,
         bool includeMots,
         bool includeFeatures,
         bool includeBasicVehicleCheck,
         bool includeFullVehicleCheck)
     {
         var query = HttpUtility.ParseQueryString(string.Empty);
+        query.Add("advertiserId", advertiserId.ToString());
         query.Add("registration", vehicleRegistration);
-
-        if (advertiserId.HasValue)
-        {
-            query.Add("advertiserId", advertiserId.ToString());
-        }
 
         if (includeMots)
         {
