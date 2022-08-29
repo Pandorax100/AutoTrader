@@ -27,7 +27,7 @@ namespace Pandorax.AutoTrader.Services
         }
 
         /// <inheritdoc />
-        public async Task<StockListResult?> GetStockAsync(StockSearchParameters parameters)
+        public async Task<StockListResult> GetStockAsync(StockSearchParameters parameters)
         {
             string url = Endpoints.SearchEndpoint(parameters);
 
@@ -35,7 +35,7 @@ namespace Pandorax.AutoTrader.Services
 
             StockListResult? result = AutoTraderJsonSerializer.Deserialize<StockListResult>(responseJson);
 
-            return result;
+            return result ?? new();
         }
 
         /// <inheritdoc />

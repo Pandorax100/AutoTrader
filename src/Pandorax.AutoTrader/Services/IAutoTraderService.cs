@@ -19,7 +19,27 @@ public interface IAutoTraderService
     /// A task representing the asynchronous operation. The result of the task is an object containing the total number
     /// of records and a list of the records on the current page.
     /// </returns>
-    Task<StockListResult?> GetStockAsync(StockSearchParameters parameters);
+    Task<StockListResult> GetStockAsync(StockSearchParameters parameters);
+
+    /// <summary>
+    /// Finds the specified stock item by id.
+    /// </summary>
+    /// <param name="advertiserId">This dealer's advertiser id.</param>
+    /// <param name="stockId">The id of the vehicle.</param>
+    /// <returns>
+    /// A task representing the asynchronous operation. The result of the task is the vehicle matching the given
+    /// <paramref name="stockId"/>, or null if one was not found.
+    /// </returns>
+    async Task<AutoTraderVehicleData?> FindStockByIdAsync(int advertiserId, string stockId)
+    {
+        StockListResult vehicles = await GetStockAsync(new StockSearchParameters
+        {
+            AdvertiserId = advertiserId,
+            StockId = stockId,
+        });
+
+        return vehicles.Results.FirstOrDefault();
+    }
 
     /// <summary>
     /// Retrieves all stock records across all pages, optionally searching by the given parameters.
