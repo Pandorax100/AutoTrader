@@ -21,13 +21,9 @@ public static class ServiceCollectionExtensions
                 (provider, client) => SetBaseAddress(provider, client))
             .AddHttpMessageHandler<AccessTokenDelegatingHandler>();
 
-        services
-            .AddHttpClient<IAutoTraderService, AutoTraderService>("AutoTrader")
-            .AddHttpMessageHandler<AccessTokenDelegatingHandler>();
+        services.AddHttpClient<IAutoTraderService, AutoTraderService>("AutoTrader");
 
-        services
-            .AddHttpClient<IAutoTraderTaxonomyService, AutoTraderTaxonomyService>("AutoTrader")
-            .AddHttpMessageHandler<AccessTokenDelegatingHandler>();
+        services.AddHttpClient<IAutoTraderTaxonomyService, AutoTraderTaxonomyService>("AutoTrader");
 
         services
             .AddHttpClient<AccessTokenHandler>((provider, client) =>
