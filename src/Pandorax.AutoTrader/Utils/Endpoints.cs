@@ -19,8 +19,8 @@ public static class Endpoints
     public static string CreateStockEndpoint(int advertiserId)
         => $"/service/stock-management/stock?advertiserId={advertiserId}";
 
-    public static string UpdateStockEndpoint(string stockId)
-        => $"/service/stock-management/stock/{stockId}";
+    public static string UpdateStockEndpoint(int advertiserId, string stockId)
+        => $"/service/stock-management/stock/{stockId}?advertiserId={advertiserId}";
 
     public static string? UploadImage(int advertiserId)
         => $"/service/stock-management/images?advertiserId={advertiserId}";

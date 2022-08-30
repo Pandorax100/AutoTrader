@@ -56,8 +56,8 @@ public interface IAutoTraderService
     Task<List<AutoTraderVehicleData>> GetAllStockAsync(StockSearchParameters parameters);
 
     Task<UpdateStockResponse> CreateStockAsync(int advertiserId, AutoTraderVehicleUpdateRequest vehicle);
-    Task<UpdateStockResponse> UpdateStockAsync(string stockId, AutoTraderVehicleUpdateRequest vehicle);
-    Task<UpdateStockResponse> RemoveStockItemAsync(string stockId);
+    Task<UpdateStockResponse> UpdateStockAsync(int advertiserId, string stockId, AutoTraderVehicleUpdateRequest vehicle);
+    Task<UpdateStockResponse> RemoveStockItemAsync(int advertiserId, string stockId);
 
     Task<UploadImageResponse> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName);
 

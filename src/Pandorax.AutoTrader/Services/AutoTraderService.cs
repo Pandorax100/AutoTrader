@@ -94,14 +94,14 @@ namespace Pandorax.AutoTrader.Services
             };
         }
 
-        public async Task<UpdateStockResponse> UpdateStockAsync(string stockId, AutoTraderVehicleUpdateRequest vehicle)
+        public async Task<UpdateStockResponse> UpdateStockAsync(int advertiserId, string stockId, AutoTraderVehicleUpdateRequest vehicle)
         {
             ArgumentNullException.ThrowIfNull(vehicle);
             ArgumentNullException.ThrowIfNull(stockId);
 
             string requestJson = AutoTraderJsonSerializer.Serialize(vehicle);
 
-            string url = Endpoints.UpdateStockEndpoint(stockId);
+            string url = Endpoints.UpdateStockEndpoint(advertiserId, stockId);
 
             using HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Patch, url)
             {
@@ -122,7 +122,7 @@ namespace Pandorax.AutoTrader.Services
             };
         }
 
-        public async Task<UpdateStockResponse> RemoveStockItemAsync(string stockId)
+        public async Task<UpdateStockResponse> RemoveStockItemAsync(int advertiserId, string stockId)
         {
             ArgumentNullException.ThrowIfNull(stockId);
 
@@ -145,7 +145,7 @@ namespace Pandorax.AutoTrader.Services
                 },
             };
 
-            return await UpdateStockAsync(stockId, payload);
+            return await UpdateStockAsync(advertiserId, stockId, payload);
         }
 
         public async Task<UploadImageResponse> UploadImageAsync(int advertiserId, Stream stream, string contentType, string fileName)
