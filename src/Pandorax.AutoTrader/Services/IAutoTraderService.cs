@@ -32,6 +32,7 @@ public interface IAutoTraderService
     /// </returns>
     async Task<AutoTraderVehicleData?> FindStockByIdAsync(int advertiserId, string stockId)
     {
+        ArgumentNullException.ThrowIfNull(stockId);
         StockListResult vehicles = await GetStockAsync(new StockSearchParameters
         {
             AdvertiserId = advertiserId,
