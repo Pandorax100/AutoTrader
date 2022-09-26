@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Pandorax.AutoTrader.Options;
 using Pandorax.AutoTrader.Serializer;
@@ -7,15 +8,18 @@ namespace Pandorax.AutoTrader.Authorization
     internal class AccessTokenHandler
     {
         private readonly HttpClient _httpClient;
+        private readonly ILogger<AccessTokenHandler> _logger;
         private readonly AutoTraderOptions _options;
 
         private AccessTokenJsonResponse? _accessToken;
 
         public AccessTokenHandler(
             HttpClient httpClient,
-            IOptions<AutoTraderOptions> options)
+            IOptions<AutoTraderOptions> options,
+            ILogger<AccessTokenHandler> logger)
         {
             _httpClient = httpClient;
+            _logger = logger;
             _options = options.Value;
         }
 
@@ -31,11 +35,16 @@ namespace Pandorax.AutoTrader.Authorization
 
                 using HttpResponseMessage? response = await _httpClient.PostAsync("/authenticate", body);
 
+                string responseString = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _logger.LogError("Unable to get access token. The remote returned the following error\n{Error}", responseString);
+                }
+
                 response.EnsureSuccessStatusCode();
 
-                string json = await response.Content.ReadAsStringAsync();
-
-                _accessToken = AutoTraderJsonSerializer.Deserialize<AccessTokenJsonResponse>(json)!;
+                _accessToken = AutoTraderJsonSerializer.Deserialize<AccessTokenJsonResponse>(responseString)!;
             }
 
             return _accessToken.AccessToken;
