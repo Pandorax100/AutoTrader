@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Version>1.0.0-alpha005</Version>
+    <Version>1.0.0-alpha006</Version>
     <Authors>Liam</Authors>
     <Description>A C# wrapper for the AutoTrader api</Description>
     <PackageProjectUrl>https://github.com/Pandorax100/AutoTrader</PackageProjectUrl>
