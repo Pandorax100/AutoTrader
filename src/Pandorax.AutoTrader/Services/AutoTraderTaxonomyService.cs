@@ -17,7 +17,8 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         _httpClient = httpClient;
     }
 
-    public async Task<IList<VehicleDerivative>> GetVehicleDerivativeAsync(string vehicleGenerationId)
+    /// <inheritdoc />
+    public async Task<IList<VehicleDerivative>> GetVehicleDerivativesAsync(string vehicleGenerationId)
     {
         ArgumentNullException.ThrowIfNull(vehicleGenerationId);
 
@@ -28,7 +29,8 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         return response.Derivatives;
     }
 
-    public async Task<IList<VehicleGeneration>> GetVehicleGenerationAsync(string vehicleModelId)
+    /// <inheritdoc />
+    public async Task<IList<VehicleGeneration>> GetVehicleGenerationsAsync(string vehicleModelId)
     {
         ArgumentNullException.ThrowIfNull(vehicleModelId);
 
@@ -39,6 +41,7 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         return response.Generations;
     }
 
+    /// <inheritdoc />
     public async Task<IList<VehicleMake>> GetVehicleMakesAsync(string vehicleType)
     {
         ArgumentNullException.ThrowIfNull(vehicleType);
@@ -50,6 +53,7 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         return response.Makes;
     }
 
+    /// <inheritdoc />
     public async Task<IList<VehicleModel>> GetVehicleModelsAsync(string vehicleMakeId)
     {
         ArgumentNullException.ThrowIfNull(vehicleMakeId);
@@ -61,6 +65,7 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         return response.Models;
     }
 
+    /// <inheritdoc />
     public async Task<IList<VehicleType>> GetVehicleTypesAsync()
     {
         string url = Endpoints.Taxonomy.VehicleTypes();
@@ -70,6 +75,7 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         return response.VehicleTypes;
     }
 
+    /// <inheritdoc />
     public Task<VehicleTechnicalData> GetTechnicalDataAsync(string derivativeId)
     {
         string url = Endpoints.Taxonomy.TechnicalData(derivativeId);
@@ -77,6 +83,7 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         return PerformRequest<VehicleTechnicalData>(url);
     }
 
+    /// <inheritdoc />
     public async Task<IList<Api.Vehicles.Feature>> GetFeaturesAsync(string derivativeId, DateOnly effectiveDate)
     {
         string url = Endpoints.Taxonomy.VehicleFeatures(derivativeId, effectiveDate);
