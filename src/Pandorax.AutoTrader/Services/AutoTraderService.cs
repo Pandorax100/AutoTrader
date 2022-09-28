@@ -177,6 +177,9 @@ namespace Pandorax.AutoTrader.Services
         {
             ArgumentNullException.ThrowIfNull(vehicleRegistration);
 
+            // Auto trader doesn't allow spaces in their reg numbers
+            vehicleRegistration = vehicleRegistration.Replace(" ", string.Empty).Trim();
+
             string url = Endpoints.VehicleData(
                 advertiserId,
                 vehicleRegistration,
