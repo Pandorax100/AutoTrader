@@ -97,39 +97,39 @@ public static class Endpoints
 
     public static class Taxonomy
     {
-        public static string VehicleTypes()
+        public static string VehicleTypes(int advertiserId)
         {
-            return "/service/stock-management/taxonomy/vehicleTypes";
+            return $"/service/stock-management/taxonomy/vehicleTypes?advertiserId={advertiserId}";
         }
 
-        public static string VehicleMakes(string vehicleType)
+        public static string VehicleMakes(int advertiserId, string vehicleType)
         {
-            return $"/service/stock-management/taxonomy/makes?vehicleType={vehicleType}";
+            return $"/service/stock-management/taxonomy/makes?advertiserId={advertiserId}&vehicleType={vehicleType}";
         }
 
-        public static string VehicleModels(string makeId)
+        public static string VehicleModels(int advertiserId, string makeId)
         {
-            return $"/service/stock-management/taxonomy/models?makeId={makeId}";
+            return $"/service/stock-management/taxonomy/models?advertiserId={advertiserId}&makeId={makeId}";
         }
 
-        public static string VehicleGenerations(string modelId)
+        public static string VehicleGenerations(int advertiserId, string modelId)
         {
-            return $"/service/stock-management/taxonomy/generations?modelId={modelId}";
+            return $"/service/stock-management/taxonomy/generations?advertiserId={advertiserId}&modelId={modelId}";
         }
 
-        public static string VehicleDerivatives(string generationId)
+        public static string VehicleDerivatives(int advertiserId, string generationId)
         {
-            return $"/service/stock-management/taxonomy/derivatives?generationId={generationId}";
+            return $"/service/stock-management/taxonomy/derivatives?advertiserId={advertiserId}&generationId={generationId}";
         }
 
-        public static string TechnicalData(string derivativeId)
+        public static string TechnicalData(int advertiserId, string derivativeId)
         {
-            return $"/service/stock-management/taxonomy/derivatives/{derivativeId}";
+            return $"/service/stock-management/taxonomy/derivatives/{derivativeId}?advertiserId={advertiserId}";
         }
 
-        public static string VehicleFeatures(string derivativeId, DateOnly effectiveDate)
+        public static string VehicleFeatures(int advertiserId, string derivativeId, DateOnly effectiveDate)
         {
-            return $"/service/stock-management/taxonomy/features?derivativeId={derivativeId}&effectiveDate={effectiveDate:yyyy-MM-dd}";
+            return $"/service/stock-management/taxonomy/features?advertiserId={advertiserId}&derivativeId={derivativeId}&effectiveDate={effectiveDate:yyyy-MM-dd}";
         }
     }
 }

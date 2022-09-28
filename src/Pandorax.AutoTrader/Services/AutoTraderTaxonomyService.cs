@@ -18,11 +18,11 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     }
 
     /// <inheritdoc />
-    public async Task<IList<VehicleDerivative>> GetVehicleDerivativesAsync(string vehicleGenerationId)
+    public async Task<IList<VehicleDerivative>> GetVehicleDerivativesAsync(int advertiserId, string vehicleGenerationId)
     {
         ArgumentNullException.ThrowIfNull(vehicleGenerationId);
 
-        string url = Endpoints.Taxonomy.VehicleDerivatives(vehicleGenerationId);
+        string url = Endpoints.Taxonomy.VehicleDerivatives(advertiserId, vehicleGenerationId);
 
         var response = await PerformRequest<VehicleDerivativesResponse>(url);
 
@@ -30,11 +30,11 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     }
 
     /// <inheritdoc />
-    public async Task<IList<VehicleGeneration>> GetVehicleGenerationsAsync(string vehicleModelId)
+    public async Task<IList<VehicleGeneration>> GetVehicleGenerationsAsync(int advertiserId, string vehicleModelId)
     {
         ArgumentNullException.ThrowIfNull(vehicleModelId);
 
-        string url = Endpoints.Taxonomy.VehicleGenerations(vehicleModelId);
+        string url = Endpoints.Taxonomy.VehicleGenerations(advertiserId, vehicleModelId);
 
         var response = await PerformRequest<VehicleGenerationsResponse>(url);
 
@@ -42,11 +42,11 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     }
 
     /// <inheritdoc />
-    public async Task<IList<VehicleMake>> GetVehicleMakesAsync(string vehicleType)
+    public async Task<IList<VehicleMake>> GetVehicleMakesAsync(int advertiserId, string vehicleType)
     {
         ArgumentNullException.ThrowIfNull(vehicleType);
 
-        string url = Endpoints.Taxonomy.VehicleMakes(vehicleType);
+        string url = Endpoints.Taxonomy.VehicleMakes(advertiserId, vehicleType);
 
         var response = await PerformRequest<VehicleMakesResponse>(url);
 
@@ -54,11 +54,11 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     }
 
     /// <inheritdoc />
-    public async Task<IList<VehicleModel>> GetVehicleModelsAsync(string vehicleMakeId)
+    public async Task<IList<VehicleModel>> GetVehicleModelsAsync(int advertiserId, string vehicleMakeId)
     {
         ArgumentNullException.ThrowIfNull(vehicleMakeId);
 
-        string url = Endpoints.Taxonomy.VehicleModels(vehicleMakeId);
+        string url = Endpoints.Taxonomy.VehicleModels(advertiserId, vehicleMakeId);
 
         var response = await PerformRequest<VehicleModelsResponse>(url);
 
@@ -66,9 +66,9 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     }
 
     /// <inheritdoc />
-    public async Task<IList<VehicleType>> GetVehicleTypesAsync()
+    public async Task<IList<VehicleType>> GetVehicleTypesAsync(int advertiserId)
     {
-        string url = Endpoints.Taxonomy.VehicleTypes();
+        string url = Endpoints.Taxonomy.VehicleTypes(advertiserId);
 
         var response = await PerformRequest<VehicleTypesResponse>(url);
 
@@ -76,17 +76,17 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     }
 
     /// <inheritdoc />
-    public Task<VehicleTechnicalData> GetTechnicalDataAsync(string derivativeId)
+    public Task<VehicleTechnicalData> GetTechnicalDataAsync(int advertiserId, string derivativeId)
     {
-        string url = Endpoints.Taxonomy.TechnicalData(derivativeId);
+        string url = Endpoints.Taxonomy.TechnicalData(advertiserId, derivativeId);
 
         return PerformRequest<VehicleTechnicalData>(url);
     }
 
     /// <inheritdoc />
-    public async Task<IList<Api.Vehicles.Feature>> GetFeaturesAsync(string derivativeId, DateOnly effectiveDate)
+    public async Task<IList<Api.Vehicles.Feature>> GetFeaturesAsync(int advertiserId, string derivativeId, DateOnly effectiveDate)
     {
-        string url = Endpoints.Taxonomy.VehicleFeatures(derivativeId, effectiveDate);
+        string url = Endpoints.Taxonomy.VehicleFeatures(advertiserId, derivativeId, effectiveDate);
 
         var response = await PerformRequest<VehicleFeaturesResponse>(url);
 
