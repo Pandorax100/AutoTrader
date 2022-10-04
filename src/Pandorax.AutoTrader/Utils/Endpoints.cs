@@ -9,11 +9,31 @@ public static class Endpoints
 {
     public static string SearchEndpoint(StockSearchParameters stockSearchParameters)
     {
-        var query = BuildStockQueryString(stockSearchParameters);
+        Dictionary<string, string?> queryParams = new()
+        {
+            ["advertiserId"] = stockSearchParameters.AdvertiserId?.ToString(),
+            ["pageSize"] = stockSearchParameters.PageSize.ToString(),
+            ["page"] = stockSearchParameters.Page?.ToString(),
+            ["lifecycleState"] = stockSearchParameters.LifecycleState switch
+            {
+                LifecycleState.Deleted => "DELETED",
+                LifecycleState.Forecourt => "FORECOURT",
+                LifecycleState.SaleInProgress => "SALE_IN_PROGRESS",
+                LifecycleState.DueIn => "DUE_IN",
+                LifecycleState.Wastebin => "WASTEBIN",
+                _ => null,
+            },
+            ["searchId"] = stockSearchParameters.SearchId,
+            ["stockId"] = stockSearchParameters.StockId,
+            ["registration"] = stockSearchParameters.Registration,
+            ["vin"] = stockSearchParameters.Vin,
+        };
 
-        return query is not null && query.Count > 0
-            ? $"/service/stock-management/stock?{query}"
-            : $"/service/stock-management/stock";
+        string url = QueryHelpers.AddQueryString(
+            "/service/stock-management/stock",
+            queryParams);
+
+        return url;
     }
 
     public static string CreateStockEndpoint(int advertiserId)
@@ -60,41 +80,6 @@ public static class Endpoints
         return $"/service/stock-management/vehicles?{query}";
     }
 
-    private static NameValueCollection BuildStockQueryString(StockSearchParameters parameters)
-    {
-        Dictionary<string, string?> queryString = new()
-        {
-            ["advertiserId"] = parameters.AdvertiserId?.ToString(),
-            ["pageSize"] = parameters.PageSize.ToString(),
-            ["page"] = parameters.Page?.ToString(),
-            ["lifecycleState"] = parameters.LifecycleState switch
-            {
-                LifecycleState.Deleted => "DELETED",
-                LifecycleState.Forecourt => "FORECOURT",
-                LifecycleState.SaleInProgress => "SALE_IN_PROGRESS",
-                LifecycleState.DueIn => "DUE_IN",
-                LifecycleState.Wastebin => "WASTEBIN",
-                _ => null,
-            },
-            ["searchId"] = parameters.SearchId,
-            ["stockId"] = parameters.StockId,
-            ["registration"] = parameters.Registration,
-            ["vin"] = parameters.Vin,
-        };
-
-        NameValueCollection query = HttpUtility.ParseQueryString(string.Empty);
-
-        foreach (var (key, value) in queryString)
-        {
-            if (value is not null)
-            {
-                query.Add(key, value);
-            }
-        }
-
-        return query;
-    }
-
     public static class Taxonomy
     {
         public static string VehicleTypes(int advertiserId)
@@ -117,11 +102,6 @@ public static class Endpoints
             return $"/service/stock-management/taxonomy/generations?advertiserId={advertiserId}&modelId={modelId}";
         }
 
-        public static string VehicleDerivatives(int advertiserId, string generationId)
-        {
-            return $"/service/stock-management/taxonomy/derivatives?advertiserId={advertiserId}&generationId={generationId}";
-        }
-
         public static string TechnicalData(int advertiserId, string derivativeId)
         {
             return $"/service/stock-management/taxonomy/derivatives/{derivativeId}?advertiserId={advertiserId}";
@@ -130,6 +110,70 @@ public static class Endpoints
         public static string VehicleFeatures(int advertiserId, string derivativeId, DateOnly effectiveDate)
         {
             return $"/service/stock-management/taxonomy/features?advertiserId={advertiserId}&derivativeId={derivativeId}&effectiveDate={effectiveDate:yyyy-MM-dd}";
+        }
+
+        public static string FuelTypes(int advertiserId, string generationId)
+        {
+            return $"/service/stock-management/taxonomy/fuelTypes?advertiserId={advertiserId}&generationId={generationId}";
+        }
+
+        public static string Transmissions(int advertiserId, string generationId)
+        {
+            return $"/service/stock-management/taxonomy/transmissions?advertiserId={advertiserId}&generationId={generationId}";
+        }
+
+        public static string BodyTypes(int advertiserId, string generationId)
+        {
+            return $"/service/stock-management/taxonomy/bodyTypes?advertiserId={advertiserId}&generationId={generationId}";
+        }
+
+        public static string Trims(int advertiserId, string generationId)
+        {
+            return $"/service/stock-management/taxonomy/trims?advertiserId={advertiserId}&generationId={generationId}";
+        }
+
+        public static string Doors(int advertiserId, string generationId)
+        {
+            return $"/service/stock-management/taxonomy/doors?advertiserId={advertiserId}&generationId={generationId}";
+        }
+
+        public static string Drivetrains(int advertiserId, string generationId)
+        {
+            return $"/service/stock-management/taxonomy/drivetrains?advertiserId={advertiserId}&generationId={generationId}";
+        }
+
+        public static string BadgeEngineSizes(int advertiserId, string generationId)
+        {
+            return $"/service/stock-management/taxonomy/badgeEngineSizes?advertiserId={advertiserId}&generationId={generationId}";
+        }
+
+        public static string VehicleDerivatives(
+            int advertiserId,
+            string vehicleGenerationId,
+            string? fuelType,
+            string? transmission,
+            string? trim,
+            string? doors,
+            string? drivetrain,
+            string? badgeEngineSize)
+        {
+            Dictionary<string, string?> queryParameters = new()
+            {
+                ["advertiserId"] = advertiserId.ToString(),
+                ["generationId"] = vehicleGenerationId,
+                ["transmission"] = transmission,
+                ["trim"] = trim,
+                ["doors"] = doors,
+                ["drivetrain"] = drivetrain,
+                ["badgeEngineSize"] = badgeEngineSize,
+                ["fuelType"] = fuelType,
+            };
+
+            string url = QueryHelpers.AddQueryString(
+                "/service/stock-management/taxonomy/derivatives",
+                queryParameters);
+
+            return url;
         }
     }
 }

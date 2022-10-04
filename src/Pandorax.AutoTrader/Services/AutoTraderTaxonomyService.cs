@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Pandorax.AutoTrader.Api.Stock.Read;
 using Pandorax.AutoTrader.Api.Taxonomy;
+using Pandorax.AutoTrader.Api.Taxonomy.Facets;
 using Pandorax.AutoTrader.Serializer;
 using Pandorax.AutoTrader.Utils;
 
@@ -18,11 +19,27 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     }
 
     /// <inheritdoc />
-    public async Task<IList<VehicleDerivative>> GetVehicleDerivativesAsync(int advertiserId, string vehicleGenerationId)
+    public async Task<IList<VehicleDerivative>> GetVehicleDerivativesAsync(
+        int advertiserId,
+        string vehicleGenerationId,
+        string? fuelType = null,
+        string? transmission = null,
+        string? trim = null,
+        string? doors = null,
+        string? drivetrain = null,
+        string? badgeEngineSize = null)
     {
         ArgumentNullException.ThrowIfNull(vehicleGenerationId);
 
-        string url = Endpoints.Taxonomy.VehicleDerivatives(advertiserId, vehicleGenerationId);
+        string url = Endpoints.Taxonomy.VehicleDerivatives(
+            advertiserId,
+            vehicleGenerationId,
+            fuelType,
+            transmission,
+            trim,
+            doors,
+            drivetrain,
+            badgeEngineSize);
 
         var response = await PerformRequest<VehicleDerivativesResponse>(url);
 
@@ -78,6 +95,8 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
     /// <inheritdoc />
     public Task<VehicleTechnicalData> GetTechnicalDataAsync(int advertiserId, string derivativeId)
     {
+        ArgumentNullException.ThrowIfNull(derivativeId);
+
         string url = Endpoints.Taxonomy.TechnicalData(advertiserId, derivativeId);
 
         return PerformRequest<VehicleTechnicalData>(url);
@@ -91,6 +110,90 @@ internal class AutoTraderTaxonomyService : IAutoTraderTaxonomyService
         var response = await PerformRequest<VehicleFeaturesResponse>(url);
 
         return response.Features;
+    }
+
+    /// <inheritdoc />
+    public async Task<IList<string>> GetFuelTypesForGenerationAsync(int advertiserId, string vehicleGenerationId)
+    {
+        ArgumentNullException.ThrowIfNull(vehicleGenerationId);
+
+        string url = Endpoints.Taxonomy.FuelTypes(advertiserId, vehicleGenerationId);
+
+        var response = await PerformRequest<FuelTypesResponse>(url);
+
+        return response.FuelTypes;
+    }
+
+    /// <inheritdoc />
+    public async Task<IList<string>> GetTransmissionsForGenerationAsync(int advertiserId, string vehicleGenerationId)
+    {
+        ArgumentNullException.ThrowIfNull(vehicleGenerationId);
+
+        string url = Endpoints.Taxonomy.FuelTypes(advertiserId, vehicleGenerationId);
+
+        var response = await PerformRequest<TransmissionResponse>(url);
+
+        return response.Transmissions;
+    }
+
+    /// <inheritdoc />
+    public async Task<IList<string>> GetBodyTypesForGenerationAsync(int advertiserId, string vehicleGenerationId)
+    {
+        ArgumentNullException.ThrowIfNull(vehicleGenerationId);
+
+        string url = Endpoints.Taxonomy.BodyTypes(advertiserId, vehicleGenerationId);
+
+        var response = await PerformRequest<BodyTypesResponse>(url);
+
+        return response.BodyTypes;
+    }
+
+    /// <inheritdoc />
+    public async Task<IList<string>> GetTrimsForGenerationAsync(int advertiserId, string vehicleGenerationId)
+    {
+        ArgumentNullException.ThrowIfNull(vehicleGenerationId);
+
+        string url = Endpoints.Taxonomy.Trims(advertiserId, vehicleGenerationId);
+
+        var response = await PerformRequest<TrimsResponse>(url);
+
+        return response.Trims;
+    }
+
+    /// <inheritdoc />
+    public async Task<IList<string>> GetDoorsForGenerationAsync(int advertiserId, string vehicleGenerationId)
+    {
+        ArgumentNullException.ThrowIfNull(vehicleGenerationId);
+
+        string url = Endpoints.Taxonomy.Doors(advertiserId, vehicleGenerationId);
+
+        var response = await PerformRequest<DoorsResponse>(url);
+
+        return response.Doors;
+    }
+
+    /// <inheritdoc />
+    public async Task<IList<string>> GetDrivetrainsForGenerationAsync(int advertiserId, string vehicleGenerationId)
+    {
+        ArgumentNullException.ThrowIfNull(vehicleGenerationId);
+
+        string url = Endpoints.Taxonomy.Drivetrains(advertiserId, vehicleGenerationId);
+
+        var response = await PerformRequest<DrivetrainsResponse>(url);
+
+        return response.Drivetrains;
+    }
+
+    /// <inheritdoc />
+    public async Task<IList<string>> GetBadgeEngineSizesForGenerationAsync(int advertiserId, string vehicleGenerationId)
+    {
+        ArgumentNullException.ThrowIfNull(vehicleGenerationId);
+
+        string url = Endpoints.Taxonomy.BadgeEngineSizes(advertiserId, vehicleGenerationId);
+
+        var response = await PerformRequest<BadgeEngineSizesResponse>(url);
+
+        return response.BadgeEngineSizes;
     }
 
     private async Task<T> PerformRequest<T>(string url)
