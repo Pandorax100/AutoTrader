@@ -11,4 +11,5 @@ public enum LifecycleState
     SaleInProgress,
     DueIn,
     Wastebin,
+    Sold,
 }

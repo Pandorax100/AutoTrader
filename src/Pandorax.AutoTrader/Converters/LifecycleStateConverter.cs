@@ -14,6 +14,7 @@ internal class LifecycleStateConverter : JsonConverter<LifecycleState>
             "FORECOURT" => LifecycleState.Forecourt,
             "SALE_IN_PROGRESS" => LifecycleState.SaleInProgress,
             "WASTEBIN" => LifecycleState.Wastebin,
+            "SOLD" => LifecycleState.Sold,
             _ => throw new ArgumentException("Cannot unmarshal type LifecycleState", nameof(reader)),
         };
     }
@@ -27,6 +28,7 @@ internal class LifecycleStateConverter : JsonConverter<LifecycleState>
             LifecycleState.SaleInProgress => "SALE_IN_PROGRESS",
             LifecycleState.Wastebin => "WASTEBIN",
             LifecycleState.DueIn => "DUE_IN",
+            LifecycleState.Sold => "SOLD",
             _ => throw new ArgumentOutOfRangeException(nameof(value)),
         });
     }
